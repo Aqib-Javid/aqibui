@@ -1,0 +1,88 @@
+import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
+import { useRef } from "react";
+
+const skills = [
+  "React", "TypeScript", "Next.js", "Node.js",
+  "Tailwind CSS", "Framer Motion", "Figma", "UI/UX Design"
+];
+
+const About = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  return (
+    <section id="about" className="py-32 relative" ref={ref}>
+      <div className="container mx-auto px-6">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          {/* Left - Image/Visual */}
+          <motion.div
+            initial={{ opacity: 0, x: -40 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="relative"
+          >
+            <div className="aspect-[4/5] bg-card rounded-3xl overflow-hidden relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-accent/20 via-transparent to-transparent" />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <span className="font-display text-8xl text-accent/30 italic">01</span>
+              </div>
+            </div>
+            {/* Floating badge */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ delay: 0.4, duration: 0.6 }}
+              className="absolute -right-4 -bottom-4 bg-accent text-accent-foreground px-6 py-3 rounded-2xl font-medium shadow-lg"
+            >
+              5+ Years Experience
+            </motion.div>
+          </motion.div>
+
+          {/* Right - Content */}
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <span className="text-accent uppercase tracking-widest text-sm font-medium mb-4 block">
+              About Me
+            </span>
+            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl mb-8 leading-tight">
+              Turning ideas into 
+              <span className="italic text-muted-foreground"> digital reality</span>
+            </h2>
+            <p className="text-muted-foreground text-lg leading-relaxed mb-8">
+              I'm a passionate developer and designer based in the digital realm. 
+              With a keen eye for detail and a love for clean code, I create 
+              seamless web experiences that not only look beautiful but also 
+              perform exceptionally.
+            </p>
+            <p className="text-muted-foreground text-lg leading-relaxed mb-12">
+              When I'm not coding, you'll find me exploring new design trends, 
+              contributing to open-source projects, or sipping coffee while 
+              sketching out my next big idea.
+            </p>
+
+            {/* Skills */}
+            <div className="flex flex-wrap gap-3">
+              {skills.map((skill, i) => (
+                <motion.span
+                  key={skill}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ delay: 0.4 + i * 0.05, duration: 0.4 }}
+                  className="px-4 py-2 bg-secondary text-secondary-foreground rounded-full text-sm font-medium"
+                >
+                  {skill}
+                </motion.span>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default About;
