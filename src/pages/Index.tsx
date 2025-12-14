@@ -1,3 +1,4 @@
+import { ThemeProvider } from "next-themes";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
@@ -7,14 +8,18 @@ import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
-    <main className="min-h-screen bg-background">
-      <Header />
-      <Hero />
-      <About />
-      <Work />
-      <Contact />
-      <Footer />
-    </main>
+    <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+      <div className="min-h-screen bg-background text-foreground">
+        <Header />
+        <main>
+          <Hero />
+          <About />
+          <Work />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
+    </ThemeProvider>
   );
 };
 

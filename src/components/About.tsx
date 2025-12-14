@@ -3,8 +3,8 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 
 const skills = [
-  "React", "TypeScript", "Next.js", "Node.js",
-  "Tailwind CSS", "Framer Motion", "Figma", "UI/UX Design"
+  "Figma", "UI Design", "UX Research", "Design Systems",
+  "Prototyping", "User Testing", "Mobile Design", "Web Design"
 ];
 
 const About = () => {
@@ -22,10 +22,10 @@ const About = () => {
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="relative"
           >
-            <div className="aspect-[4/5] bg-card rounded-3xl overflow-hidden relative">
+            <div className="aspect-[4/5] bg-card rounded-3xl overflow-hidden relative border border-border">
               <div className="absolute inset-0 bg-gradient-to-br from-accent/20 via-transparent to-transparent" />
               <div className="absolute inset-0 flex items-center justify-center">
-                <span className="font-display text-8xl text-accent/30 italic">01</span>
+                <span className="font-display text-8xl text-accent/30 italic">AQ</span>
               </div>
             </div>
             {/* Floating badge */}
@@ -49,19 +49,17 @@ const About = () => {
               About Me
             </span>
             <h2 className="font-display text-4xl md:text-5xl lg:text-6xl mb-8 leading-tight">
-              Turning ideas into 
-              <span className="italic text-muted-foreground"> digital reality</span>
+              Crafting user-centered 
+              <span className="italic text-muted-foreground"> digital solutions</span>
             </h2>
-            <p className="text-muted-foreground text-lg leading-relaxed mb-8">
-              I'm a passionate developer and designer based in the digital realm. 
-              With a keen eye for detail and a love for clean code, I create 
-              seamless web experiences that not only look beautiful but also 
-              perform exceptionally.
+            <p className="text-muted-foreground text-lg leading-relaxed mb-6">
+              I'm a product designer with 5+ years of experience creating user-centered digital solutions. My passion lies in solving complex design problems and building scalable design systems that empower teams.
+            </p>
+            <p className="text-muted-foreground text-lg leading-relaxed mb-6">
+              I believe great design starts with understanding user needs and solving real problems. Whether it's designing intuitive mobile app interfaces, building comprehensive design systems, or optimizing user flows, I focus on creating experiences that are both beautiful and functional.
             </p>
             <p className="text-muted-foreground text-lg leading-relaxed mb-12">
-              When I'm not coding, you'll find me exploring new design trends, 
-              contributing to open-source projects, or sipping coffee while 
-              sketching out my next big idea.
+              With expertise in end-to-end design—from research to execution—I bridge business goals with seamless interactions, ensuring every pixel serves a purpose.
             </p>
 
             {/* Skills */}

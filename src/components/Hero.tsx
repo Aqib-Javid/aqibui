@@ -28,44 +28,33 @@ const Hero = () => {
           transition={{ duration: 1 }}
           className="max-w-5xl"
         >
-          {/* Greeting */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-            className="text-muted-foreground text-lg mb-6 font-body"
-          >
-            Hello, I'm
-          </motion.p>
-
-          {/* Name */}
+          {/* Title */}
           <motion.h1
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="font-display text-6xl md:text-8xl lg:text-9xl font-normal leading-[0.9] tracking-tight mb-8"
+            transition={{ delay: 0.2, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="font-display text-5xl md:text-7xl lg:text-8xl font-normal leading-[1.1] tracking-tight mb-8"
           >
-            Creative
-            <br />
-            <span className="italic text-accent">Developer</span>
+            I'm a product designer focused on{" "}
+            <span className="italic text-accent">user experience</span> and{" "}
+            <span className="italic text-accent">design systems.</span>
           </motion.h1>
 
-          {/* Description */}
+          {/* Subtitle */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.6 }}
-            className="text-xl md:text-2xl text-muted-foreground max-w-xl font-body font-light leading-relaxed"
+            transition={{ delay: 0.4, duration: 0.6 }}
+            className="text-xl md:text-2xl text-muted-foreground max-w-3xl font-body font-light leading-relaxed"
           >
-            I craft digital experiences that blend aesthetics with functionality. 
-            Specializing in modern web technologies and interactive design.
+            I specialize in creating beautiful, accessible digital products. Currently Sr Product Designer at Algorithm, with experience designing for mobile apps, web platforms, and design systems.
           </motion.p>
 
           {/* CTA Buttons */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7, duration: 0.6 }}
+            transition={{ delay: 0.6, duration: 0.6 }}
             className="flex flex-wrap gap-4 mt-12"
           >
             <motion.a
@@ -91,7 +80,7 @@ const Hero = () => {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.2, duration: 0.6 }}
+          transition={{ delay: 1, duration: 0.6 }}
           className="absolute bottom-12 left-1/2 -translate-x-1/2"
         >
           <motion.div

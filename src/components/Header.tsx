@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import ThemeToggle from "./ThemeToggle";
 
 const Header = () => {
   const scrollToSection = (id: string) => {
@@ -19,7 +20,7 @@ const Header = () => {
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
         >
-          Portfolio<span className="text-accent">.</span>
+          Aqib<span className="text-accent">.</span>
         </motion.a>
 
         <ul className="hidden md:flex items-center gap-8">
@@ -41,14 +42,17 @@ const Header = () => {
           ))}
         </ul>
 
-        <motion.a
-          href="mailto:hello@yourname.com"
-          className="hidden md:flex items-center gap-2 px-5 py-2.5 bg-foreground text-background rounded-full text-sm font-medium hover:bg-accent hover:text-accent-foreground transition-all duration-300"
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-        >
-          Let's Talk
-        </motion.a>
+        <div className="flex items-center gap-4">
+          <ThemeToggle />
+          <motion.a
+            href="mailto:contact@aqibjavid.com"
+            className="hidden md:flex items-center gap-2 px-5 py-2.5 bg-foreground text-background rounded-full text-sm font-medium hover:bg-accent hover:text-accent-foreground transition-all duration-300"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            Let's Talk
+          </motion.a>
+        </div>
       </nav>
     </motion.header>
   );
