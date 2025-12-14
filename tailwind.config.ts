@@ -14,8 +14,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ['Instrument Serif', 'serif'],
-        body: ['Inter', 'sans-serif'],
+        display: ['Gilroy', 'sans-serif'],
+        body: ['Gilroy', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
