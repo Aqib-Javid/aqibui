@@ -5,28 +5,60 @@ import ProjectCard from "./ProjectCard";
 
 const projects = [
   {
-    title: "E-Commerce Platform",
-    category: "Web Development",
-    description: "A modern shopping experience with seamless checkout and real-time inventory management.",
-    image: "",
+    title: "HairCut Recommendation",
+    category: "SaaS & Startup • Taiwan",
+    description: "AI-powered hairstyle discovery web application for personalized recommendations.",
+    image: "https://framerusercontent.com/images/BMw5YPVWUO3k9pECf8lPzg9N52k.png?width=1280&height=960",
+    href: "https://www.figma.com/design/XaCfE8zMvk0ZhP21eeqeUu/HairstyleDiscovery-Web-App?m=auto&t=hLvRRi5Y9U0pEulv-6",
   },
   {
-    title: "Finance Dashboard",
-    category: "UI/UX Design",
-    description: "Intuitive data visualization and analytics platform for financial professionals.",
-    image: "",
+    title: "Maktab",
+    category: "School Management System • Pakistan",
+    description: "Comprehensive school management platform for educational institutions.",
+    image: "https://framerusercontent.com/images/lS2JBP2RGiWlbMACBoqI59mvtI.png?width=1280&height=960",
+    href: "https://usemaktab.com/",
   },
   {
-    title: "Creative Agency Site",
-    category: "Branding",
-    description: "Bold and expressive web presence for a cutting-edge creative studio.",
-    image: "",
+    title: "Sanialarm Landing Page",
+    category: "Education Startup App • Croatia",
+    description: "Modern landing page design for an innovative education startup.",
+    image: "https://framerusercontent.com/images/21jfi5u7uXEbUBB1f47nLWK6h0.png?width=1280&height=960",
+    href: "https://sanialarm.de/",
   },
   {
-    title: "Health & Wellness App",
-    category: "Mobile Development",
-    description: "Comprehensive wellness tracking with personalized insights and community features.",
-    image: "",
+    title: "Quick Swapper",
+    category: "Swap Buy - Sell • Pakistan",
+    description: "Mobile app for seamless buying and selling through swapping.",
+    image: "https://framerusercontent.com/images/E1vS8YOLzfCf7rCXY6fY1Pi6W5o.png?width=1280&height=960",
+    href: "https://play.google.com/store/apps/details?id=com.noman.quickSwapper&hl=en",
+  },
+  {
+    title: "Rapidos Booking App",
+    category: "Travel • USA",
+    description: "Intuitive travel booking application for seamless trip planning.",
+    image: "https://framerusercontent.com/images/WXsO0e0BXvxxhfhB9DIh9UiZAc.png?width=1280&height=960",
+    href: "https://www.figma.com/design/9Z6Kx843G4aB1n26bd6e9h/Rapidos-Booking-App--Copy-?node-id=0-1&t=VGp1HCTF9N37wJbz-1",
+  },
+  {
+    title: "MATE Social App",
+    category: "Social • USA",
+    description: "Modern social networking app with engaging UX/UI design.",
+    image: "https://framerusercontent.com/images/17qHrfHBEMeGT3yf5rr2Dys07I.png?width=1280&height=960",
+    href: "https://www.figma.com/design/X0BK7oC8jvwulXot7gAdSc/Social-App-UX-UI-design?node-id=112803-2014&t=5ncT8RwO5bvb6Uaj-1",
+  },
+  {
+    title: "Diet Achiever",
+    category: "Health & Fitness • USA",
+    description: "Health and fitness platform for personalized diet tracking.",
+    image: "https://framerusercontent.com/images/CmD8B011kEkOSFTzmAuDJkEGmfA.png?width=1280&height=960",
+    href: "https://dietachiever.com/",
+  },
+  {
+    title: "Donna 24/7 AI Receptionist",
+    category: "AI Receptionist • Canada",
+    description: "AI-powered virtual receptionist for 24/7 customer service.",
+    image: "https://framerusercontent.com/images/KX5sHXOoo12HjwkGFDsPXUoekIQ.png?width=1280&height=960",
+    href: "https://donnaio.ai/",
   },
 ];
 
@@ -62,24 +94,6 @@ const Work = () => {
             />
           ))}
         </div>
-
-        {/* View All Button */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.4, duration: 0.6 }}
-          className="text-center mt-16"
-        >
-          <motion.a
-            href="#"
-            className="inline-flex items-center gap-2 px-8 py-4 border border-border rounded-full font-medium hover:border-accent hover:text-accent transition-all duration-300"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            View All Projects
-          </motion.a>
-        </motion.div>
       </div>
     </section>
   );

@@ -13,7 +13,7 @@ const Footer = () => {
             viewport={{ once: true }}
             className="text-muted-foreground text-sm"
           >
-            © {currentYear} Portfolio. All rights reserved.
+            © {currentYear} Aqib Javid. All rights reserved.
           </motion.p>
           
           <motion.p
@@ -22,7 +22,7 @@ const Footer = () => {
             viewport={{ once: true }}
             className="text-muted-foreground text-sm"
           >
-            Designed & Built with passion
+            Designed with passion
           </motion.p>
         </div>
       </div>
