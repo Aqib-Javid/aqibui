@@ -33,11 +33,11 @@ const Hero = () => {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="font-display text-4xl md:text-6xl lg:text-7xl font-bold leading-[1.15] tracking-tight mb-8"
+            className="font-display text-4xl md:text-5xl lg:text-6xl font-medium leading-[1.2] tracking-[-0.02em] mb-8"
           >
             I'm a product designer focused on{" "}
-            <span className="text-accent">user experience</span> and{" "}
-            <span className="text-accent">design systems</span>.
+            <span className="text-accent underline decoration-accent decoration-2 underline-offset-4">user experience</span> and{" "}
+            <span className="text-accent underline decoration-accent decoration-2 underline-offset-4">design systems</span>.
           </motion.h1>
 
           {/* Subtitle */}
@@ -45,7 +45,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.6 }}
-            className="text-xl md:text-2xl text-muted-foreground max-w-3xl font-body font-light leading-relaxed"
+            className="text-lg md:text-xl text-muted-foreground max-w-2xl font-normal leading-relaxed"
           >
             I specialize in creating beautiful, accessible digital products. Currently Sr Product Designer at Algorithm, with experience designing for mobile apps, web platforms, and design systems.
           </motion.p>
