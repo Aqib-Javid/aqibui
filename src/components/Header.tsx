@@ -1,10 +1,17 @@
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
 
 const Header = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   const scrollToSection = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    setIsMenuOpen(false);
   };
+
+  const navItems = ["About", "Work", "Contact"];
 
   return (
     <motion.header
@@ -23,8 +30,9 @@ const Header = () => {
           Aqib<span className="text-accent">.</span>
         </motion.a>
 
+        {/* Desktop Navigation */}
         <ul className="hidden md:flex items-center gap-8">
-          {["About", "Work", "Contact"].map((item, i) => (
+          {navItems.map((item, i) => (
             <motion.li
               key={item}
               initial={{ opacity: 0, y: -10 }}
@@ -42,20 +50,77 @@ const Header = () => {
           ))}
         </ul>
 
-        <div className="flex items-center gap-4">
+        {/* Desktop Actions */}
+        <div className="hidden md:flex items-center gap-4">
           <ThemeToggle />
           <motion.a
             href="https://wa.link/ru1hs6"
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden md:flex items-center gap-2 px-5 py-2.5 bg-foreground text-background rounded-full text-sm font-medium hover:bg-accent hover:text-accent-foreground transition-all duration-300"
+            className="flex items-center gap-2 px-5 py-2.5 bg-foreground text-background rounded-full text-sm font-medium hover:bg-accent hover:text-accent-foreground transition-all duration-300"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
             Let's Talk
           </motion.a>
         </div>
+
+        {/* Mobile Menu Button */}
+        <button
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className="md:hidden p-2 text-foreground"
+          aria-label="Toggle menu"
+        >
+          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
       </nav>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="md:hidden bg-background border-b border-border/50 overflow-hidden"
+          >
+            <div className="container mx-auto px-6 py-6 flex flex-col gap-6">
+              {/* Mobile Nav Items */}
+              <ul className="flex flex-col gap-4">
+                {navItems.map((item, i) => (
+                  <motion.li
+                    key={item}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.05 * i, duration: 0.3 }}
+                  >
+                    <button
+                      onClick={() => scrollToSection(item.toLowerCase())}
+                      className="text-lg font-medium text-muted-foreground hover:text-foreground transition-colors duration-300"
+                    >
+                      {item}
+                    </button>
+                  </motion.li>
+                ))}
+              </ul>
+
+              {/* Mobile Actions */}
+              <div className="flex items-center gap-4 pt-4 border-t border-border/50">
+                <ThemeToggle />
+                <a
+                  href="https://wa.link/ru1hs6"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 text-center px-5 py-2.5 bg-foreground text-background rounded-full text-sm font-medium hover:bg-accent hover:text-accent-foreground transition-all duration-300"
+                >
+                  Let's Talk
+                </a>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.header>
   );
 };
