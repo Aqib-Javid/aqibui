@@ -82,13 +82,13 @@ const Work = () => {
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="text-center mb-20"
+          className="text-center mb-16"
         >
-          <span className="text-accent uppercase tracking-widest text-sm font-medium mb-4 block">
+          <span className="text-accent uppercase tracking-[0.2em] text-xs font-medium mb-4 block">
             Selected Work
           </span>
-          <h2 className="font-display text-5xl md:text-6xl lg:text-7xl">
-            Featured <span className="italic text-muted-foreground">Projects</span>
+          <h2 className="font-display text-4xl md:text-5xl font-medium tracking-[-0.02em]">
+            Featured <span className="italic font-normal text-muted-foreground">Projects</span>
           </h2>
         </motion.div>
 
