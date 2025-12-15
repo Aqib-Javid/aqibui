@@ -50,29 +50,27 @@ const Header = () => {
           ))}
         </ul>
 
-        {/* Desktop Actions */}
-        <div className="hidden md:flex items-center gap-4">
+        {/* Actions - Always visible */}
+        <div className="flex items-center gap-2 md:gap-4">
           <ThemeToggle />
-          <motion.a
+          <a
             href="https://wa.link/ru1hs6"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-5 py-2.5 bg-foreground text-background rounded-full text-sm font-medium hover:bg-accent hover:text-accent-foreground transition-all duration-300"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
+            className="flex items-center gap-2 px-3 py-2 md:px-5 md:py-2.5 bg-foreground text-background rounded-full text-xs md:text-sm font-medium hover:bg-accent hover:text-accent-foreground transition-all duration-300"
           >
             Let's Talk
-          </motion.a>
+          </a>
+          
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="md:hidden p-2 text-foreground"
+            aria-label="Toggle menu"
+          >
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
         </div>
-
-        {/* Mobile Menu Button */}
-        <button
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="md:hidden p-2 text-foreground"
-          aria-label="Toggle menu"
-        >
-          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
       </nav>
 
       {/* Mobile Menu */}
@@ -85,7 +83,7 @@ const Header = () => {
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
             className="md:hidden bg-background border-b border-border/50 overflow-hidden"
           >
-            <div className="container mx-auto px-6 py-6 flex flex-col gap-6">
+            <div className="container mx-auto px-6 py-6">
               {/* Mobile Nav Items */}
               <ul className="flex flex-col gap-4">
                 {navItems.map((item, i) => (
@@ -104,19 +102,6 @@ const Header = () => {
                   </motion.li>
                 ))}
               </ul>
-
-              {/* Mobile Actions */}
-              <div className="flex items-center gap-4 pt-4 border-t border-border/50">
-                <ThemeToggle />
-                <a
-                  href="https://wa.link/ru1hs6"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-1 text-center px-5 py-2.5 bg-foreground text-background rounded-full text-sm font-medium hover:bg-accent hover:text-accent-foreground transition-all duration-300"
-                >
-                  Let's Talk
-                </a>
-              </div>
             </div>
           </motion.div>
         )}
