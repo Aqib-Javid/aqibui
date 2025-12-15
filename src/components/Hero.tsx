@@ -33,11 +33,11 @@ const Hero = () => {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="font-display text-5xl md:text-7xl lg:text-8xl font-normal leading-[1.1] tracking-tight mb-8"
+            className="font-display text-4xl md:text-6xl lg:text-7xl font-bold leading-[1.15] tracking-tight mb-8"
           >
             I'm a product designer focused on{" "}
-            <span className="italic text-accent">user experience</span> and{" "}
-            <span className="italic text-accent">design systems.</span>
+            <span className="text-accent">user experience</span> and{" "}
+            <span className="text-accent">design systems</span>.
           </motion.h1>
 
           {/* Subtitle */}
@@ -50,28 +50,23 @@ const Hero = () => {
             I specialize in creating beautiful, accessible digital products. Currently Sr Product Designer at Algorithm, with experience designing for mobile apps, web platforms, and design systems.
           </motion.p>
 
-          {/* CTA Buttons */}
+          {/* CTA Button */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.6 }}
-            className="flex flex-wrap gap-4 mt-12"
+            className="mt-10"
           >
             <motion.a
               href="#work"
-              className="px-8 py-4 bg-foreground text-background rounded-full font-medium hover:bg-accent hover:text-accent-foreground transition-all duration-300"
+              className="inline-flex items-center gap-2 px-7 py-4 bg-foreground text-background rounded-full font-semibold hover:bg-accent hover:text-accent-foreground transition-all duration-300"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              View My Work
-            </motion.a>
-            <motion.a
-              href="#contact"
-              className="px-8 py-4 border border-border rounded-full font-medium hover:border-foreground transition-all duration-300"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              Get In Touch
+              View my work
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
             </motion.a>
           </motion.div>
         </motion.div>
