@@ -50,13 +50,11 @@ const Contact = () => {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
-            <span className="text-accent uppercase tracking-widest text-sm font-medium mb-4 block">
+            <span className="text-accent uppercase tracking-[0.2em] text-xs font-medium mb-4 block">
               Get In Touch
             </span>
-            <h2 className="font-display text-5xl md:text-6xl lg:text-7xl mb-8">
-              Let's create something
-              <br />
-              <span className="italic text-muted-foreground">amazing together</span>
+            <h2 className="font-display text-4xl md:text-5xl font-medium tracking-[-0.02em] mb-8">
+              Let's create something <span className="italic font-normal text-muted-foreground">amazing together</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-12">
               Have a project in mind? I'd love to hear about it. Let's discuss how 
