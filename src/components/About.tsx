@@ -54,7 +54,7 @@ const About = () => {
               <span className="text-muted-foreground font-normal"> digital solutions</span>
             </h2>
             <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-              I'm a product designer with 5+ years of experience creating user-centered digital solutions. My passion lies in solving complex design problems and building scalable design systems that empower teams.
+              I'm Aqib, a product designer with 5+ years of experience creating user-centered digital solutions. My passion lies in solving complex design problems and building scalable design systems that empower teams.
             </p>
             <p className="text-muted-foreground text-lg leading-relaxed mb-6">
               I believe great design starts with understanding user needs and solving real problems. Whether it's designing intuitive mobile app interfaces, building comprehensive design systems, or optimizing user flows, I focus on creating experiences that are both beautiful and functional.
