@@ -35,7 +35,7 @@ const Hero = () => {
             transition={{ delay: 0.2, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="font-display text-4xl md:text-5xl lg:text-6xl font-medium leading-[1.2] tracking-[-0.02em] mb-8"
           >
-            I'm a product designer focused on{" "}
+            I'm Aqib, a product designer focused on{" "}
             <span className="text-accent underline decoration-accent decoration-2 underline-offset-4">user experience</span> and{" "}
             <span className="text-accent underline decoration-accent decoration-2 underline-offset-4">design systems</span>.
           </motion.h1>
