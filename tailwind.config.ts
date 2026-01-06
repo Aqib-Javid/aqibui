@@ -14,8 +14,9 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ['Gilroy', 'sans-serif'],
-        body: ['Gilroy', 'sans-serif'],
+        display: ['Figtree', 'sans-serif'],
+        body: ['Figtree', 'sans-serif'],
+        sans: ['Figtree', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",

@@ -50,8 +50,7 @@ const About = () => {
               About Me
             </span>
             <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold mb-8 leading-tight">
-              Crafting user-centered 
-              <span className="text-muted-foreground font-normal"> digital solutions</span>
+              Crafting user-centered digital solutions
             </h2>
             <p className="text-muted-foreground text-lg leading-relaxed mb-6">
               I'm Aqib, a product designer with 5+ years of experience creating user-centered digital solutions. My passion lies in solving complex design problems and building scalable design systems that empower teams.

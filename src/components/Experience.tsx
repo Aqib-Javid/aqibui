@@ -4,39 +4,66 @@ import { useRef } from "react";
 
 const experiences = [
   {
-    role: "Sr. UX Designer",
-    company: "Carelon Global Solutions",
-    period: "Aug 24 – Current",
+    role: "Sr Product Designer",
+    company: "Algorithm",
+    location: "Peshawar, Pakistan · Hybrid",
+    period: "Jun 2025 – Present",
     isCurrent: true,
   },
   {
-    role: "UX Designer",
-    company: "Atoll Solutions Private Limited",
-    period: "Sept 23 – July 24",
+    role: "Senior Product Designer",
+    company: "Fiverr · Freelance",
+    location: "Remote",
+    period: "Sep 2022 – Present",
+    isCurrent: true,
+  },
+  {
+    role: "Senior Product Designer",
+    company: "Upwork · Freelance",
+    location: "Remote",
+    period: "Aug 2022 – Present",
+    isCurrent: true,
+  },
+  {
+    role: "Senior UI UX Designer",
+    company: "ItecExperts Pvt Ltd",
+    location: "Peshawar, Pakistan · On-site",
+    period: "Oct 2023 – Sep 2024",
     isCurrent: false,
   },
   {
-    role: "Product Designer",
-    company: "AppDay Technology, Gurgaon",
-    period: "Dec 22 – Sept 23",
+    role: "UI UX Designer",
+    company: "ItecExperts Pvt Ltd",
+    location: "Peshawar, Pakistan · On-site",
+    period: "Oct 2022 – Sep 2023",
     isCurrent: false,
   },
   {
-    role: "UI/UX Designer",
-    company: "Khiladi Adda, Noida",
-    period: "May 21 – Dec 22",
+    role: "UI UX Designer",
+    company: "tecmyer",
+    location: "Lahore, Pakistan · Remote",
+    period: "Apr 2022 – Sep 2022",
     isCurrent: false,
   },
   {
-    role: "UI Designer",
-    company: "MilkyWay Websites, USA (Remote)",
-    period: "Mar 20 – May 21",
+    role: "UI UX Designer",
+    company: "Appick",
+    location: "Karachi, Pakistan · Remote",
+    period: "Jul 2021 – Apr 2022",
+    isCurrent: false,
+  },
+  {
+    role: "Ecommerce Manager",
+    company: "HAQ Electronic Peshawar",
+    location: "Peshawar, Pakistan",
+    period: "Dec 2020 – Jun 2021",
     isCurrent: false,
   },
   {
     role: "Designer",
-    company: "stufflistings",
-    period: "Dec 19 – Mar 20",
+    company: "Beta Byte Technology · Internship",
+    location: "Peshawar, Pakistan · On-site",
+    period: "Sep 2020 – Nov 2020",
     isCurrent: false,
   },
 ];
@@ -78,8 +105,11 @@ const Experience = () => {
               }`}>
                 {exp.role}
               </h3>
-              <p className="text-muted-foreground text-sm mb-6">
+              <p className="text-muted-foreground text-sm mb-1">
                 {exp.company}
+              </p>
+              <p className="text-muted-foreground/70 text-xs mb-4">
+                {exp.location}
               </p>
               <p className={`text-sm font-medium ${
                 exp.isCurrent ? "text-accent" : "text-muted-foreground"
