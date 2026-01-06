@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import ThemeToggle from "./ThemeToggle";
 import aqibAvatar from "@/assets/aqib-avatar.png";
 
 const Header = () => {
@@ -61,7 +60,6 @@ const Header = () => {
 
         {/* Actions - Always visible */}
         <div className="flex items-center gap-2 md:gap-4">
-          <ThemeToggle />
           <a
             href="mailto:contact@aqibjavid.com"
             className="flex items-center gap-2 px-3 py-2 md:px-5 md:py-2.5 bg-accent text-accent-foreground rounded-full text-xs md:text-sm font-medium hover:bg-accent/90 transition-all duration-300"
