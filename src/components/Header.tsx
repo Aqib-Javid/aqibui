@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
+import aqibAvatar from "@/assets/aqib-avatar.png";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -11,7 +12,7 @@ const Header = () => {
     setIsMenuOpen(false);
   };
 
-  const navItems = ["About", "Work", "Contact"];
+  const navItems = ["About", "Experience", "Work", "Contact"];
 
   return (
     <motion.header
@@ -23,11 +24,19 @@ const Header = () => {
       <nav className="container mx-auto px-6 py-4 flex items-center justify-between">
         <motion.a
           href="#"
-          className="font-display text-2xl tracking-tight"
+          className="flex items-center gap-3"
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
         >
-          Aqib Javid<span className="text-accent">.</span>
+          <img 
+            src={aqibAvatar} 
+            alt="Aqib Javid" 
+            className="w-10 h-10 rounded-full object-cover border-2 border-accent"
+          />
+          <div className="hidden sm:flex flex-col">
+            <span className="font-display text-lg font-semibold leading-tight">Aqib Javid</span>
+            <span className="text-xs text-accent font-medium">Senior UX Designer</span>
+          </div>
         </motion.a>
 
         {/* Desktop Navigation */}
