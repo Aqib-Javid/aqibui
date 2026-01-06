@@ -53,8 +53,8 @@ const Contact = () => {
             <span className="text-accent uppercase tracking-[0.2em] text-xs font-medium mb-4 block">
               Get In Touch
             </span>
-            <h2 className="font-display text-4xl md:text-5xl font-medium tracking-[-0.02em] mb-8">
-              Let's create something <span className="italic font-normal text-muted-foreground">amazing together</span>
+            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold mb-8">
+              Let's create something amazing together
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-12">
               Have a project in mind? I'd love to hear about it. Let's discuss how 

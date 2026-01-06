@@ -63,12 +63,10 @@ const Header = () => {
         <div className="flex items-center gap-2 md:gap-4">
           <ThemeToggle />
           <a
-            href="https://wa.link/ru1hs6"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 px-3 py-2 md:px-5 md:py-2.5 bg-foreground text-background rounded-full text-xs md:text-sm font-medium hover:bg-accent hover:text-accent-foreground transition-all duration-300"
+            href="mailto:contact@aqibjavid.com"
+            className="flex items-center gap-2 px-3 py-2 md:px-5 md:py-2.5 bg-accent text-accent-foreground rounded-full text-xs md:text-sm font-medium hover:bg-accent/90 transition-all duration-300"
           >
-            Let's Talk
+            Hire Me
           </a>
           
           {/* Mobile Menu Button */}
