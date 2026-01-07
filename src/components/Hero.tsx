@@ -1,7 +1,25 @@
-import { motion } from "framer-motion";
-import { ArrowDown } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowDown, Mail } from "lucide-react";
+import { useState } from "react";
+import aqibAvatar from "@/assets/aqib-avatar.png";
 
 const Hero = () => {
+  const [hoveredWord, setHoveredWord] = useState<string | null>(null);
+
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      const headerOffset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    }
+  };
+
   return (
     <section className="min-h-screen flex flex-col justify-center relative overflow-hidden pt-20">
       {/* Background gradient */}
@@ -21,6 +39,28 @@ const Hero = () => {
         }}
       />
 
+      {/* Hover bubble for profile picture */}
+      <AnimatePresence>
+        {hoveredWord && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.8, y: 20 }}
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 pointer-events-none"
+          >
+            <div className="relative">
+              <div className="absolute inset-0 bg-accent/30 rounded-full blur-xl animate-pulse" />
+              <img
+                src={aqibAvatar}
+                alt="Aqib Javid"
+                className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-accent shadow-2xl relative z-10"
+              />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <div className="container mx-auto px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0 }}
@@ -35,9 +75,31 @@ const Hero = () => {
             transition={{ delay: 0.2, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="font-display text-4xl md:text-5xl lg:text-6xl font-medium leading-[1.2] tracking-[-0.02em] mb-8"
           >
-            I'm Aqib, a product designer focused on{" "}
-            <span className="text-accent underline decoration-accent decoration-2 underline-offset-4">user experience</span> and{" "}
-            <span className="text-accent underline decoration-accent decoration-2 underline-offset-4">design systems</span>.
+            I'm{" "}
+            <span
+              className="text-accent underline decoration-accent decoration-2 underline-offset-4 cursor-pointer"
+              onMouseEnter={() => setHoveredWord("name")}
+              onMouseLeave={() => setHoveredWord(null)}
+            >
+              Aqib
+            </span>
+            , a product designer focused on{" "}
+            <span
+              className="text-accent underline decoration-accent decoration-2 underline-offset-4 cursor-pointer"
+              onMouseEnter={() => setHoveredWord("ux")}
+              onMouseLeave={() => setHoveredWord(null)}
+            >
+              user experience
+            </span>{" "}
+            and{" "}
+            <span
+              className="text-accent underline decoration-accent decoration-2 underline-offset-4 cursor-pointer"
+              onMouseEnter={() => setHoveredWord("design")}
+              onMouseLeave={() => setHoveredWord(null)}
+            >
+              design systems
+            </span>
+            .
           </motion.h1>
 
           {/* Subtitle */}
@@ -50,16 +112,20 @@ const Hero = () => {
             I specialize in creating beautiful, accessible digital products. Currently Sr Product Designer at Algorithm, with experience designing for mobile apps, web platforms, and design systems.
           </motion.p>
 
-          {/* CTA Button */}
+          {/* CTA Buttons */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.6 }}
-            className="mt-10"
+            className="mt-10 flex flex-wrap items-center gap-4"
           >
             <motion.a
               href="#work"
-              className="inline-flex items-center gap-2 px-7 py-4 bg-foreground text-background rounded-full font-semibold hover:bg-accent hover:text-accent-foreground transition-all duration-300"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection("work");
+              }}
+              className="inline-flex items-center gap-2 px-7 py-4 border-2 border-foreground text-foreground rounded-full font-semibold hover:bg-accent hover:border-accent hover:text-accent-foreground transition-all duration-300"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
@@ -67,6 +133,16 @@ const Hero = () => {
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
+            </motion.a>
+
+            <motion.a
+              href="mailto:contact@aqibjavid.com"
+              className="inline-flex items-center gap-2 px-7 py-4 border-2 border-foreground text-foreground rounded-full font-semibold hover:bg-accent hover:border-accent hover:text-accent-foreground transition-all duration-300"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <Mail className="w-4 h-4" />
+              contact@aqibjavid.com
             </motion.a>
           </motion.div>
         </motion.div>
