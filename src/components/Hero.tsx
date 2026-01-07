@@ -147,23 +147,24 @@ const Hero = () => {
           </motion.div>
         </motion.div>
 
-        {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1, duration: 0.6 }}
-          className="absolute bottom-12 left-1/2 -translate-x-1/2"
-        >
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            className="flex flex-col items-center gap-2 text-muted-foreground"
-          >
-            <span className="text-xs uppercase tracking-widest">Scroll</span>
-            <ArrowDown className="w-4 h-4" />
-          </motion.div>
-        </motion.div>
       </div>
+
+      {/* Scroll indicator - positioned at bottom of hero section */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1, duration: 0.6 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+      >
+        <motion.div
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          className="flex flex-col items-center gap-2 text-muted-foreground"
+        >
+          <span className="text-xs uppercase tracking-widest">Scroll</span>
+          <ArrowDown className="w-4 h-4" />
+        </motion.div>
+      </motion.div>
     </section>
   );
 };

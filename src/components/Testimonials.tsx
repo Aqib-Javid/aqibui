@@ -34,10 +34,12 @@ const Testimonials = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="flex items-center gap-3 mb-12"
+          className="mb-16"
         >
-          <Quote className="w-6 h-6 text-accent" />
-          <h2 className="font-display text-3xl md:text-4xl font-semibold">
+          <span className="text-primary font-semibold uppercase tracking-widest text-sm mb-4 block">
+            CLIENT FEEDBACK
+          </span>
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground">
             Testimonials
           </h2>
         </motion.div>
@@ -67,7 +69,7 @@ const Testimonials = () => {
                 </div>
 
                 {/* Quote */}
-                <blockquote className="flex-1 text-muted-foreground text-sm md:text-base leading-relaxed mb-6">
+                <blockquote className="flex-1 text-foreground/80 text-sm md:text-base leading-relaxed mb-6">
                   "{testimonial.quote}"
                 </blockquote>
 
