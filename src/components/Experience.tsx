@@ -81,11 +81,11 @@ const Experience = () => {
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           className="mb-16"
         >
-          <span className="text-accent uppercase tracking-widest text-sm font-semibold mb-4 block">
-            Career Journey
+          <span className="text-primary uppercase tracking-widest text-sm font-medium mb-4 block">
+            CAREER JOURNEY
           </span>
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-            Work Experience
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-medium text-primary uppercase leading-tight">
+            WORK EXPERIENCE
           </h2>
         </motion.div>
 
