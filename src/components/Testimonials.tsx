@@ -36,11 +36,11 @@ const Testimonials = () => {
           transition={{ duration: 0.6 }}
           className="mb-16"
         >
-          <span className="text-primary font-semibold uppercase tracking-widest text-sm mb-4 block">
+          <span className="text-primary uppercase tracking-widest text-sm font-medium mb-4 block">
             CLIENT FEEDBACK
           </span>
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground">
-            Testimonials
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-medium text-primary uppercase">
+            TESTIMONIALS
           </h2>
         </motion.div>
 

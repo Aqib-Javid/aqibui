@@ -84,11 +84,11 @@ const Work = () => {
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           className="text-center mb-16"
         >
-          <span className="text-accent uppercase tracking-[0.2em] text-xs font-medium mb-4 block">
-            Selected Work
+          <span className="text-primary uppercase tracking-widest text-sm font-medium mb-4 block">
+            SELECTED WORK
           </span>
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold">
-            Featured Projects
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-medium text-primary uppercase">
+            FEATURED PROJECTS
           </h2>
         </motion.div>
 

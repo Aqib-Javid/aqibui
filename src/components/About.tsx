@@ -46,11 +46,11 @@ const About = () => {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           >
-            <span className="text-accent uppercase tracking-widest text-sm font-semibold mb-4 block">
-              About Me
+            <span className="text-primary uppercase tracking-widest text-sm font-medium mb-4 block">
+              ABOUT ME
             </span>
-            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold mb-8 leading-tight">
-              Crafting user-centered digital solutions
+            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-medium text-primary uppercase mb-8 leading-tight">
+              CRAFTING USER-CENTERED DIGITAL SOLUTIONS
             </h2>
             <p className="text-muted-foreground text-lg leading-relaxed mb-6">
               I'm Aqib, a product designer with 5+ years of experience creating user-centered digital solutions. My passion lies in solving complex design problems and building scalable design systems that empower teams.
