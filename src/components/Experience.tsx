@@ -15,14 +15,14 @@ const experiences = [
     company: "Fiverr · Freelance",
     location: "Remote",
     period: "Sep 2022 – Present",
-    isCurrent: true,
+    isCurrent: false,
   },
   {
     role: "Senior Product Designer",
     company: "Upwork · Freelance",
     location: "Remote",
     period: "Aug 2022 – Present",
-    isCurrent: true,
+    isCurrent: false,
   },
   {
     role: "Senior UI UX Designer",
