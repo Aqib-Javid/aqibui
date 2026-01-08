@@ -87,8 +87,8 @@ const Work = () => {
           <span className="text-primary uppercase tracking-widest text-sm font-medium mb-4 block">
             SELECTED WORK
           </span>
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-medium text-primary uppercase">
-            FEATURED PROJECTS
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-medium text-foreground">
+            Featured Projects
           </h2>
         </motion.div>
 

@@ -49,8 +49,8 @@ const About = () => {
             <span className="text-primary uppercase tracking-widest text-sm font-medium mb-4 block">
               ABOUT ME
             </span>
-            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-medium text-primary uppercase mb-8 leading-tight">
-              CRAFTING USER-CENTERED DIGITAL SOLUTIONS
+            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-medium text-foreground mb-8 leading-tight">
+              Crafting User-Centered Digital Solutions
             </h2>
             <p className="text-muted-foreground text-lg leading-relaxed mb-6">
               I'm Aqib, a product designer with 5+ years of experience creating user-centered digital solutions. My passion lies in solving complex design problems and building scalable design systems that empower teams.

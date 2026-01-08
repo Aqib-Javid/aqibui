@@ -84,8 +84,8 @@ const Experience = () => {
           <span className="text-primary uppercase tracking-widest text-sm font-medium mb-4 block">
             CAREER JOURNEY
           </span>
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-medium text-primary uppercase leading-tight">
-            WORK EXPERIENCE
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-medium text-foreground leading-tight">
+            Work Experience
           </h2>
         </motion.div>
 
