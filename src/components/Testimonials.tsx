@@ -39,8 +39,8 @@ const Testimonials = () => {
           <span className="text-primary uppercase tracking-widest text-sm font-medium mb-4 block">
             CLIENT FEEDBACK
           </span>
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-medium text-primary uppercase">
-            TESTIMONIALS
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-medium text-foreground">
+            Testimonials
           </h2>
         </motion.div>
 
