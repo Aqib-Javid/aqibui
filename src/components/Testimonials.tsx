@@ -58,13 +58,13 @@ const Testimonials = () => {
     <section id="testimonials" className="py-24 relative">
       <div className="max-w-[1200px] mx-auto px-6">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           className="mb-12"
         >
-          <span className="text-primary uppercase tracking-[0.2em] text-xs font-medium mb-3 block">
+          <span className="text-primary uppercase tracking-[0.3em] text-xs font-medium mb-3 block">
             TESTIMONIALS
           </span>
           <p className="text-muted-foreground text-base md:text-lg max-w-xl">
@@ -80,17 +80,17 @@ const Testimonials = () => {
             {testimonials.map((testimonial, index) => (
               <CarouselItem key={testimonial.name} className="pl-4 md:basis-1/2 lg:basis-1/3">
                 <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, y: 40, scale: 0.95 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
                   viewport={{ once: true, margin: "-50px" }}
-                  transition={{ delay: index * 0.08, duration: 0.5 }}
+                  transition={{ delay: index * 0.1, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
                   className="h-full"
                 >
-                  <div className="p-6 md:p-8 border border-border/50 rounded-2xl h-full flex flex-col bg-card/50">
+                  <div className="p-6 md:p-8 border border-border/50 rounded-2xl h-full flex flex-col bg-card/80">
                     {/* Stars */}
                     <div className="flex gap-0.5 mb-4">
                       {Array.from({ length: testimonial.rating }).map((_, i) => (
-                        <Star key={i} className="w-3.5 h-3.5 fill-primary text-primary" />
+                        <Star key={i} className="w-3.5 h-3.5 fill-accent text-accent" />
                       ))}
                     </div>
 
@@ -117,8 +117,8 @@ const Testimonials = () => {
             ))}
           </CarouselContent>
           <div className="flex justify-center gap-4 mt-8">
-            <CarouselPrevious className="relative static translate-y-0 bg-card border-border/50 hover:bg-accent hover:text-accent-foreground" />
-            <CarouselNext className="relative static translate-y-0 bg-card border-border/50 hover:bg-accent hover:text-accent-foreground" />
+            <CarouselPrevious className="relative static translate-y-0 bg-card border-border/50 hover:bg-secondary" />
+            <CarouselNext className="relative static translate-y-0 bg-card border-border/50 hover:bg-secondary" />
           </div>
         </Carousel>
       </div>
