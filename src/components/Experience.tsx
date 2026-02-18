@@ -50,13 +50,13 @@ const Experience = () => {
     <section id="experience" className="py-24 relative">
       <div className="max-w-[1200px] mx-auto px-6">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           className="mb-12"
         >
-          <span className="text-primary uppercase tracking-[0.2em] text-xs font-medium mb-3 block">
+          <span className="text-primary uppercase tracking-[0.3em] text-xs font-medium mb-3 block">
             EXPERIENCE
           </span>
           <p className="text-muted-foreground text-base md:text-lg max-w-xl">
@@ -68,18 +68,16 @@ const Experience = () => {
           {experiences.map((exp, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: -30, y: 20 }}
+              whileInView={{ opacity: 1, x: 0, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ delay: i * 0.08, duration: 0.5 }}
+              transition={{ delay: i * 0.1, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
               className="group grid md:grid-cols-[200px_1fr] gap-4 md:gap-8 py-8 border-t border-border/50 first:border-t-0"
             >
-              {/* Period */}
               <span className={`text-sm font-mono tracking-wide ${exp.isCurrent ? "text-accent" : "text-muted-foreground/60"}`}>
                 {exp.period}
               </span>
 
-              {/* Details */}
               <div>
                 <h3 className={`font-display text-lg md:text-xl font-semibold mb-1 ${exp.isCurrent ? "text-accent" : "text-foreground"}`}>
                   {exp.role}
