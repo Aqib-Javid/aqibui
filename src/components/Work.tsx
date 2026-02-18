@@ -1,6 +1,4 @@
 import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef } from "react";
 import ProjectCard from "./ProjectCard";
 
 const projects = [
@@ -71,29 +69,27 @@ const projects = [
 ];
 
 const Work = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
   return (
-    <section id="work" className="py-32 relative" ref={ref}>
-      <div className="container mx-auto px-6">
+    <section id="work" className="py-24 relative">
+      <div className="max-w-[1200px] mx-auto px-6">
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="text-center mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+          className="mb-6"
         >
-          <span className="text-primary uppercase tracking-widest text-sm font-medium mb-4 block">
-            SELECTED WORK
+          <span className="text-primary uppercase tracking-[0.2em] text-xs font-medium mb-3 block">
+            WORK
           </span>
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-medium text-foreground">
-            Featured Projects
-          </h2>
+          <p className="text-muted-foreground text-base md:text-lg max-w-xl">
+            Below are some select projects, case studies and live links are available.
+          </p>
         </motion.div>
 
         {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
+        <div className="grid md:grid-cols-2 gap-8 lg:gap-10 mt-12">
           {projects.map((project, index) => (
             <ProjectCard
               key={project.title}

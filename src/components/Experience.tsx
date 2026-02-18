@@ -1,121 +1,96 @@
 import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef } from "react";
 
 const experiences = [
   {
+    period: "2025 — Now",
     role: "Sr Product Designer",
     company: "Algorithm",
-    location: "Peshawar, Pakistan · Hybrid",
-    period: "Jun 2025 – Present",
+    description: "Leading product design initiatives, creating user-centered solutions for complex design challenges across mobile and web platforms.",
     isCurrent: true,
   },
   {
+    period: "2022 — Present",
     role: "Senior Product Designer",
-    company: "Fiverr · Freelance",
-    location: "Remote",
-    period: "Sep 2022 – Present",
+    company: "Fiverr & Upwork · Freelance",
+    description: "Delivering high-quality UX/UI design services to global clients, specializing in mobile apps, web platforms, and design systems.",
     isCurrent: false,
   },
   {
-    role: "Senior Product Designer",
-    company: "Upwork · Freelance",
-    location: "Remote",
-    period: "Aug 2022 – Present",
-    isCurrent: false,
-  },
-  {
+    period: "2023 — 2024",
     role: "Senior UI UX Designer",
     company: "ItecExperts Pvt Ltd",
-    location: "Peshawar, Pakistan · On-site",
-    period: "Oct 2023 – Sep 2024",
+    description: "Led design team in creating intuitive interfaces for enterprise applications and establishing design workflows.",
     isCurrent: false,
   },
   {
+    period: "2022 — 2023",
     role: "UI UX Designer",
     company: "ItecExperts Pvt Ltd",
-    location: "Peshawar, Pakistan · On-site",
-    period: "Oct 2022 – Sep 2023",
+    description: "Designed user interfaces and conducted UX research for various client projects across industries.",
     isCurrent: false,
   },
   {
+    period: "2021 — 2022",
     role: "UI UX Designer",
-    company: "tecmyer",
-    location: "Lahore, Pakistan · Remote",
-    period: "Apr 2022 – Sep 2022",
+    company: "Appick · Remote",
+    description: "Created mobile and web app designs following user-centered design principles for diverse product portfolio.",
     isCurrent: false,
   },
   {
-    role: "UI UX Designer",
-    company: "Appick",
-    location: "Karachi, Pakistan · Remote",
-    period: "Jul 2021 – Apr 2022",
-    isCurrent: false,
-  },
-  {
-    role: "Ecommerce Manager",
-    company: "HAQ Electronic Peshawar",
-    location: "Peshawar, Pakistan",
-    period: "Dec 2020 – Jun 2021",
-    isCurrent: false,
-  },
-  {
+    period: "2020 — 2021",
     role: "Designer",
-    company: "Beta Byte Technology · Internship",
-    location: "Peshawar, Pakistan · On-site",
-    period: "Sep 2020 – Nov 2020",
+    company: "Beta Byte Technology",
+    description: "Started career journey with hands-on design work, learning fundamentals of digital product design.",
     isCurrent: false,
   },
 ];
 
 const Experience = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
   return (
-    <section id="experience" className="py-32 relative" ref={ref}>
-      <div className="container mx-auto px-6">
+    <section id="experience" className="py-24 relative">
+      <div className="max-w-[1200px] mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-16"
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+          className="mb-12"
         >
-          <span className="text-primary uppercase tracking-widest text-sm font-medium mb-4 block">
-            CAREER JOURNEY
+          <span className="text-primary uppercase tracking-[0.2em] text-xs font-medium mb-3 block">
+            EXPERIENCE
           </span>
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-medium text-foreground leading-tight">
-            Work Experience
-          </h2>
+          <p className="text-muted-foreground text-base md:text-lg max-w-xl">
+            Throughout my career, I've worked on various projects, from building scalable systems to designing user-friendly interfaces.
+          </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-border rounded-2xl overflow-hidden">
+        <div className="space-y-0">
           {experiences.map((exp, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.1 * i, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              className={`bg-background p-8 relative group hover:bg-secondary/50 transition-colors duration-300 ${
-                exp.isCurrent ? "ring-1 ring-accent ring-inset" : ""
-              }`}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ delay: i * 0.08, duration: 0.5 }}
+              className="group grid md:grid-cols-[200px_1fr] gap-4 md:gap-8 py-8 border-t border-border/50 first:border-t-0"
             >
-              <h3 className={`font-display text-xl md:text-2xl font-bold mb-2 ${
-                exp.isCurrent ? "text-accent" : "text-foreground"
-              }`}>
-                {exp.role}
-              </h3>
-              <p className="text-muted-foreground text-sm mb-1">
-                {exp.company}
-              </p>
-              <p className="text-muted-foreground/70 text-xs mb-4">
-                {exp.location}
-              </p>
-              <p className={`text-sm font-medium ${
-                exp.isCurrent ? "text-accent" : "text-muted-foreground"
-              }`}>
+              {/* Period */}
+              <span className={`text-sm font-mono tracking-wide ${exp.isCurrent ? "text-accent" : "text-muted-foreground/60"}`}>
                 {exp.period}
-              </p>
+              </span>
+
+              {/* Details */}
+              <div>
+                <h3 className={`font-display text-lg md:text-xl font-semibold mb-1 ${exp.isCurrent ? "text-accent" : "text-foreground"}`}>
+                  {exp.role}
+                </h3>
+                <p className="text-muted-foreground text-sm mb-3">
+                  at <span className="text-foreground/80">{exp.company}</span>
+                </p>
+                <p className="text-muted-foreground/70 text-sm leading-relaxed max-w-lg">
+                  {exp.description}
+                </p>
+              </div>
             </motion.div>
           ))}
         </div>
