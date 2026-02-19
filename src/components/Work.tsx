@@ -1,7 +1,13 @@
 import { motion } from "framer-motion";
 import ProjectCard from "./ProjectCard";
+import nexifyvpnThumb from "@/assets/nexifyvpn-thumbnail.png";
 
 const projects = [
+  {
+    title: "NexifyVPN",
+    image: nexifyvpnThumb,
+    href: "https://nexifyvpn.com",
+  },
   {
     title: "HairCut Recommendation",
     image: "https://framerusercontent.com/images/BMw5YPVWUO3k9pECf8lPzg9N52k.png?width=1280&height=960",
@@ -47,7 +53,16 @@ const projects = [
 const Work = () => {
   return (
     <section id="work" className="py-24 relative">
-      <div className="max-w-[1200px] mx-auto px-6">
+      {/* Dotted background pattern */}
+      <div
+        className="absolute inset-0 opacity-[0.15]"
+        style={{
+          backgroundImage: "radial-gradient(circle, hsl(var(--foreground)) 1px, transparent 1px)",
+          backgroundSize: "24px 24px",
+        }}
+      />
+      
+      <div className="max-w-[1200px] mx-auto px-6 relative z-10">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
