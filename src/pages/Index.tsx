@@ -8,6 +8,7 @@ import Testimonials from "@/components/Testimonials";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import LoadingScreen from "@/components/LoadingScreen";
+import { toast } from "sonner";
 
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -15,8 +16,9 @@ const Index = () => {
   // Copy email on "c" key press
   useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {
-      if (e.key === "c" && !e.metaKey && !e.ctrlKey && document.activeElement?.tagName !== "INPUT") {
+      if (e.key === "c" && !e.metaKey && !e.ctrlKey && document.activeElement?.tagName !== "INPUT" && document.activeElement?.tagName !== "TEXTAREA") {
         navigator.clipboard.writeText("contact@aqibjavid.com");
+        toast("Email copied!", { description: "contact@aqibjavid.com" });
       }
     };
     window.addEventListener("keypress", handleKeyPress);
