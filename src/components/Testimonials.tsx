@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Star } from "lucide-react";
+import Autoplay from "embla-carousel-autoplay";
 import {
   Carousel,
   CarouselContent,
@@ -74,6 +75,7 @@ const Testimonials = () => {
 
         <Carousel
           opts={{ align: "start", loop: true }}
+          plugins={[Autoplay({ delay: 4000, stopOnInteraction: false })]}
           className="w-full"
         >
           <CarouselContent className="-ml-4">
@@ -87,19 +89,14 @@ const Testimonials = () => {
                   className="h-full"
                 >
                   <div className="p-6 md:p-8 border border-border/50 rounded-2xl h-full flex flex-col bg-card/80">
-                    {/* Stars */}
                     <div className="flex gap-0.5 mb-4">
                       {Array.from({ length: testimonial.rating }).map((_, i) => (
                         <Star key={i} className="w-3.5 h-3.5 fill-accent text-accent" />
                       ))}
                     </div>
-
-                    {/* Quote */}
                     <blockquote className="flex-1 text-foreground/70 text-sm leading-relaxed mb-6">
                       "{testimonial.quote}"
                     </blockquote>
-
-                    {/* Author */}
                     <div className="flex items-center gap-3 pt-4 border-t border-border/30">
                       <div className="w-8 h-8 rounded-full bg-secondary flex items-center justify-center">
                         <span className="text-foreground/70 font-medium text-xs">
