@@ -1,5 +1,5 @@
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
+import { useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import nexifyvpnThumb from "@/assets/nexifyvpn-thumbnail.png";
 
@@ -9,113 +9,143 @@ const projects = [
     image: nexifyvpnThumb,
     href: "https://nexifyvpn.com",
     category: "Web App",
+    size: "large",
   },
   {
     title: "HairCut Recommendation",
     image: "https://framerusercontent.com/images/BMw5YPVWUO3k9pECf8lPzg9N52k.png?width=1280&height=960",
     href: "https://www.figma.com/design/XaCfE8zMvk0ZhP21eeqeUu/HairstyleDiscovery-Web-App?m=auto&t=hLvRRi5Y9U0pEulv-6",
     category: "UX Design",
+    size: "medium",
   },
   {
     title: "Maktab",
     image: "https://framerusercontent.com/images/lS2JBP2RGiWlbMACBoqI59mvtI.png?width=1280&height=960",
     href: "https://usemaktab.com/",
     category: "Product Design",
+    size: "medium",
   },
   {
     title: "Sanialarm",
     image: "https://framerusercontent.com/images/21jfi5u7uXEbUBB1f47nLWK6h0.png?width=1280&height=960",
     href: "https://sanialarm.de/",
     category: "Web Design",
+    size: "small",
   },
   {
     title: "Quick Swapper",
     image: "https://framerusercontent.com/images/E1vS8YOLzfCf7rCXY6fY1Pi6W5o.png?width=1280&height=960",
     href: "https://play.google.com/store/apps/details?id=com.noman.quickSwapper&hl=en",
     category: "Mobile App",
+    size: "small",
   },
   {
     title: "Rapidos Booking",
     image: "https://framerusercontent.com/images/WXsO0e0BXvxxhfhB9DIh9UiZAc.png?width=1280&height=960",
     href: "https://www.figma.com/design/9Z6Kx843G4aB1n26bd6e9h/Rapidos-Booking-App--Copy-?node-id=0-1&t=VGp1HCTF9N37wJbz-1",
     category: "Mobile App",
+    size: "small",
   },
   {
     title: "MATE Social App",
     image: "https://framerusercontent.com/images/17qHrfHBEMeGT3yf5rr2Dys07I.png?width=1280&height=960",
     href: "https://www.figma.com/design/X0BK7oC8jvwulXot7gAdSc/Social-App-UX-UI-design?node-id=112803-2014&t=5ncT8RwO5bvb6Uaj-1",
     category: "UX/UI Design",
+    size: "medium",
   },
   {
     title: "Diet Achiever",
     image: "https://framerusercontent.com/images/CmD8B011kEkOSFTzmAuDJkEGmfA.png?width=1280&height=960",
     href: "https://dietachiever.com/",
     category: "Web App",
+    size: "small",
   },
   {
     title: "Donna AI Receptionist",
     image: "https://framerusercontent.com/images/KX5sHXOoo12HjwkGFDsPXUoekIQ.png?width=1280&height=960",
     href: "https://donnaio.ai/",
     category: "AI Product",
+    size: "large",
   },
 ];
 
-const ProjectItem = ({ project, index }: { project: typeof projects[0]; index: number }) => {
-  const ref = useRef<HTMLAnchorElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  });
+const ProjectTile = ({ project, index }: { project: typeof projects[0]; index: number }) => {
+  const [isHovered, setIsHovered] = useState(false);
 
-  const imageY = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
-  const isEven = index % 2 === 0;
+  const sizeClasses: Record<string, string> = {
+    large: "col-span-2 row-span-2",
+    medium: "col-span-1 row-span-2",
+    small: "col-span-1 row-span-1",
+  };
 
   return (
     <motion.a
-      ref={ref}
       href={project.href}
       target="_blank"
       rel="noopener noreferrer"
-      initial={{ opacity: 0, y: 80 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.9, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-      className={`group grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-10 items-center py-8 md:py-12 border-b border-border/40 hover:border-foreground/20 transition-colors duration-500 cursor-pointer`}
+      initial={{ opacity: 0, scale: 0.9 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{ duration: 0.5, delay: index * 0.06, ease: [0.22, 1, 0.36, 1] }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className={`${sizeClasses[project.size]} relative rounded-2xl overflow-hidden cursor-pointer group min-h-[180px] md:min-h-[220px]`}
     >
-      {/* Thumbnail */}
-      <div className={`md:col-span-7 ${!isEven ? 'md:order-2' : ''} relative overflow-hidden rounded-2xl aspect-[16/10] bg-secondary`}>
-        <motion.div
-          style={{ y: imageY }}
-          className="absolute inset-[-10%] transition-transform duration-700 ease-out group-hover:scale-105"
-        >
-          <img
-            src={project.image}
-            alt={project.title}
-            className="w-full h-full object-cover"
-            loading="lazy"
-          />
-        </motion.div>
-        {/* Hover gradient */}
-        <div className="absolute inset-0 bg-gradient-to-t from-foreground/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-      </div>
+      {/* Image */}
+      <motion.div
+        animate={{ scale: isHovered ? 1.08 : 1 }}
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        className="absolute inset-0"
+      >
+        <img
+          src={project.image}
+          alt={project.title}
+          className="w-full h-full object-cover"
+          loading="lazy"
+        />
+      </motion.div>
 
-      {/* Info */}
-      <div className={`md:col-span-5 ${!isEven ? 'md:order-1 md:text-right' : ''} flex flex-col gap-3`}>
-        <span className="text-xs uppercase tracking-[0.25em] text-muted-foreground font-medium">
+      {/* Always-visible gradient at bottom */}
+      <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 via-foreground/10 to-transparent" />
+
+      {/* Hover overlay */}
+      <motion.div
+        initial={false}
+        animate={{ opacity: isHovered ? 1 : 0 }}
+        transition={{ duration: 0.3 }}
+        className="absolute inset-0 bg-foreground/40 backdrop-blur-[2px]"
+      />
+
+      {/* Content */}
+      <div className="absolute inset-0 flex flex-col justify-end p-4 md:p-6">
+        <motion.span
+          initial={false}
+          animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 8 }}
+          transition={{ duration: 0.3, delay: 0.05 }}
+          className="text-[10px] uppercase tracking-[0.3em] text-primary-foreground/70 font-medium mb-1"
+        >
           {project.category}
-        </span>
-        <h3 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-foreground group-hover:text-primary transition-colors duration-300 leading-tight">
-          {project.title}
-        </h3>
-        <div className={`flex items-center gap-2 text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-300 ${!isEven ? 'md:justify-end' : ''}`}>
-          <span>View Project</span>
-          <motion.span
-            className="inline-block"
-            initial={{ x: 0, y: 0 }}
-            whileHover={{ x: 3, y: -3 }}
+        </motion.span>
+        <div className="flex items-end justify-between gap-2">
+          <motion.h3
+            animate={{ y: isHovered ? 0 : 4 }}
+            transition={{ duration: 0.3 }}
+            className="text-primary-foreground font-semibold text-base md:text-lg lg:text-xl leading-tight"
           >
-            <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
-          </motion.span>
+            {project.title}
+          </motion.h3>
+          <motion.div
+            initial={false}
+            animate={{
+              opacity: isHovered ? 1 : 0,
+              scale: isHovered ? 1 : 0.5,
+              rotate: isHovered ? 0 : -45,
+            }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="flex-shrink-0 w-8 h-8 md:w-10 md:h-10 rounded-full bg-primary-foreground/20 backdrop-blur-md flex items-center justify-center border border-primary-foreground/20"
+          >
+            <ArrowUpRight className="w-4 h-4 md:w-5 md:h-5 text-primary-foreground" />
+          </motion.div>
         </div>
       </div>
     </motion.a>
@@ -127,34 +157,39 @@ const Work = () => {
     <section id="work" className="py-20 md:py-32 relative">
       {/* Dotted background */}
       <div
-        className="absolute inset-0 opacity-[0.08]"
+        className="absolute inset-0 opacity-[0.06]"
         style={{
           backgroundImage: "radial-gradient(circle, hsl(var(--foreground)) 1px, transparent 1px)",
-          backgroundSize: "20px 20px",
+          backgroundSize: "24px 24px",
         }}
       />
 
       <div className="max-w-[1200px] mx-auto px-6 relative z-10">
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-16 md:mb-24"
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-12 md:mb-16 flex items-end justify-between"
         >
-          <span className="text-primary uppercase tracking-[0.3em] text-xs font-medium mb-4 block">
-            Selected Work
-          </span>
-          <h2 className="text-3xl md:text-5xl font-semibold text-foreground max-w-lg leading-tight">
-            Projects I've crafted with care
-          </h2>
+          <div>
+            <span className="text-primary uppercase tracking-[0.3em] text-xs font-medium mb-3 block">
+              Selected Work
+            </span>
+            <h2 className="text-3xl md:text-5xl font-semibold text-foreground leading-tight">
+              Projects I've crafted
+            </h2>
+          </div>
+          <p className="hidden md:block text-sm text-muted-foreground max-w-[200px] text-right">
+            Hover to explore, click to visit
+          </p>
         </motion.div>
 
-        {/* Stacked Projects */}
-        <div className="flex flex-col">
+        {/* Bento Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[140px] md:auto-rows-[160px] gap-3 md:gap-4">
           {projects.map((project, index) => (
-            <ProjectItem key={project.title} project={project} index={index} />
+            <ProjectTile key={project.title} project={project} index={index} />
           ))}
         </div>
       </div>
