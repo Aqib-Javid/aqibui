@@ -187,7 +187,7 @@ const Work = () => {
         </motion.div>
 
         {/* Bento Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[140px] md:auto-rows-[160px] gap-3 md:gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 auto-rows-[200px] md:auto-rows-[180px] gap-3 md:gap-4">
           {projects.map((project, index) => (
             <ProjectTile key={project.title} project={project} index={index} />
           ))}
