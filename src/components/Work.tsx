@@ -69,10 +69,10 @@ const projects = [
   },
 ];
 
-const heightMap: Record<string, string> = {
-  tall: "h-[420px] md:h-[480px]",
-  medium: "h-[300px] md:h-[340px]",
-  short: "h-[240px] md:h-[260px]",
+const sizeMap: Record<string, string> = {
+  tall: "col-span-1 row-span-2",
+  medium: "col-span-1 row-span-2",
+  short: "col-span-1 row-span-1",
 };
 
 const ProjectTile = ({ project, index }: { project: typeof projects[0]; index: number }) => {
@@ -89,7 +89,7 @@ const ProjectTile = ({ project, index }: { project: typeof projects[0]; index: n
       transition={{ duration: 0.6, delay: index * 0.05, ease: [0.22, 1, 0.36, 1] }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`${heightMap[project.height]} relative rounded-2xl overflow-hidden cursor-pointer group block mb-4`}
+      className={`${sizeMap[project.height]} relative rounded-2xl overflow-hidden cursor-pointer group block min-h-[200px]`}
     >
       {/* Image */}
       <motion.div
@@ -192,8 +192,8 @@ const Work = () => {
           </p>
         </motion.div>
 
-        {/* Masonry Grid */}
-        <div className="columns-1 sm:columns-2 lg:columns-3 gap-4">
+        {/* Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 auto-rows-[180px] gap-4">
           {projects.map((project, index) => (
             <ProjectTile key={project.title} project={project} index={index} />
           ))}
