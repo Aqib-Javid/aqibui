@@ -69,12 +69,6 @@ const projects = [
   },
 ];
 
-const sizeMap: Record<string, string> = {
-  tall: "col-span-1 row-span-2",
-  medium: "col-span-1 row-span-2",
-  short: "col-span-1 row-span-1",
-};
-
 const ProjectTile = ({ project, index }: { project: typeof projects[0]; index: number }) => {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -89,7 +83,7 @@ const ProjectTile = ({ project, index }: { project: typeof projects[0]; index: n
       transition={{ duration: 0.6, delay: index * 0.05, ease: [0.22, 1, 0.36, 1] }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`${sizeMap[project.height]} relative rounded-2xl overflow-hidden cursor-pointer group block min-h-[200px]`}
+      className="relative aspect-[4/3] rounded-2xl overflow-hidden cursor-pointer group block"
     >
       {/* Image */}
       <motion.div
@@ -153,12 +147,6 @@ const ProjectTile = ({ project, index }: { project: typeof projects[0]; index: n
 };
 
 const Work = () => {
-  // Split projects into 3 columns for masonry
-  const columns: (typeof projects)[] = [[], [], []];
-  projects.forEach((project, i) => {
-    columns[i % 3].push(project);
-  });
-
   return (
     <section id="work" className="py-20 md:py-32 relative">
       {/* Dotted background */}
@@ -192,8 +180,8 @@ const Work = () => {
           </p>
         </motion.div>
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 auto-rows-[180px] gap-4">
+        {/* Grid — uniform cards, 3 columns */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project, index) => (
             <ProjectTile key={project.title} project={project} index={index} />
           ))}
