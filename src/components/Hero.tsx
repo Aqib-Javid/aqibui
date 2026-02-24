@@ -1,6 +1,71 @@
-import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
-import { useRef } from "react";
+import { motion, useMotionValue, useTransform, useSpring, useAnimationFrame } from "framer-motion";
+import { useRef, useMemo, useEffect } from "react";
 import aqibAvatar from "@/assets/aqib-avatar.png";
+
+// Floating dot particle network
+const FloatingDots = () => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const dots = useMemo(() => {
+    return Array.from({ length: 55 }, () => ({
+      x: Math.random() * 1400,
+      y: Math.random() * 900,
+      vx: (Math.random() - 0.5) * 0.25,
+      vy: (Math.random() - 0.5) * 0.25,
+      radius: Math.random() * 1.5 + 0.5,
+      opacity: Math.random() * 0.12 + 0.04,
+    }));
+  }, []);
+
+  useAnimationFrame(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const w = canvas.offsetWidth;
+    const h = canvas.offsetHeight;
+    canvas.width = w;
+    canvas.height = h;
+    ctx.clearRect(0, 0, w, h);
+
+    dots.forEach((dot) => {
+      dot.x += dot.vx;
+      dot.y += dot.vy;
+      if (dot.x < 0 || dot.x > w) dot.vx *= -1;
+      if (dot.y < 0 || dot.y > h) dot.vy *= -1;
+
+      ctx.beginPath();
+      ctx.arc(dot.x, dot.y, dot.radius, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(156, 163, 175, ${dot.opacity})`;
+      ctx.fill();
+    });
+
+    // Faint connecting lines between nearby dots
+    for (let i = 0; i < dots.length; i++) {
+      for (let j = i + 1; j < dots.length; j++) {
+        const dx = dots[i].x - dots[j].x;
+        const dy = dots[i].y - dots[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 130) {
+          ctx.beginPath();
+          ctx.moveTo(dots[i].x, dots[i].y);
+          ctx.lineTo(dots[j].x, dots[j].y);
+          ctx.strokeStyle = `rgba(156, 163, 175, ${0.035 * (1 - dist / 130)})`;
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
+      }
+    }
+  });
+
+  return (
+    <canvas
+      ref={canvasRef}
+      className="absolute inset-0 w-full h-full pointer-events-none"
+      style={{ opacity: 0.8 }}
+    />
+  );
+};
 
 const Hero = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -29,16 +94,19 @@ const Hero = () => {
       onMouseLeave={handleMouseLeave}
       className="min-h-[85vh] flex flex-col justify-center pt-20 pb-12 relative overflow-hidden"
     >
+      {/* Interactive floating dot network */}
+      <FloatingDots />
+
       {/* Floating gradient orbs */}
       <motion.div
         animate={{ x: [0, 30, -20, 0], y: [0, -40, 20, 0] }}
         transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-20 right-[15%] w-64 h-64 rounded-full bg-primary/5 blur-3xl pointer-events-none"
+        className="absolute top-20 right-[15%] w-72 h-72 rounded-full bg-primary/5 blur-3xl pointer-events-none"
       />
       <motion.div
         animate={{ x: [0, -30, 20, 0], y: [0, 30, -30, 0] }}
         transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute bottom-20 left-[10%] w-48 h-48 rounded-full bg-accent/5 blur-3xl pointer-events-none"
+        className="absolute bottom-20 left-[10%] w-56 h-56 rounded-full bg-accent/5 blur-3xl pointer-events-none"
       />
 
       <div className="max-w-[1200px] mx-auto px-6 w-full">
