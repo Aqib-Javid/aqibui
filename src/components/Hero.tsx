@@ -1,22 +1,21 @@
 import { motion, useMotionValue, useTransform, useSpring, useAnimationFrame } from "framer-motion";
-import { useRef, useMemo, useEffect } from "react";
+import { useRef, useMemo } from "react";
 import aqibAvatar from "@/assets/aqib-avatar.png";
 
-// Floating dot particle network
-const FloatingDots = () => {
+// Morphing blob background
+const MorphingBlobs = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const dots = useMemo(() => {
-    return Array.from({ length: 55 }, () => ({
-      x: Math.random() * 1400,
-      y: Math.random() * 900,
-      vx: (Math.random() - 0.5) * 0.25,
-      vy: (Math.random() - 0.5) * 0.25,
-      radius: Math.random() * 1.5 + 0.5,
-      opacity: Math.random() * 0.12 + 0.04,
-    }));
-  }, []);
+  const timeRef = useRef(0);
 
-  useAnimationFrame(() => {
+  const blobs = useMemo(() => [
+    { cx: 0.25, cy: 0.35, r: 120, speed: 0.0008, phase: 0, color: [220, 15, 60] },
+    { cx: 0.7, cy: 0.3, r: 100, speed: 0.0012, phase: 2, color: [152, 45, 55] },
+    { cx: 0.5, cy: 0.7, r: 90, speed: 0.001, phase: 4, color: [200, 20, 50] },
+    { cx: 0.15, cy: 0.65, r: 80, speed: 0.0009, phase: 1.5, color: [180, 30, 58] },
+    { cx: 0.85, cy: 0.6, r: 110, speed: 0.0011, phase: 3, color: [240, 15, 55] },
+  ], []);
+
+  useAnimationFrame((t) => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
@@ -27,32 +26,52 @@ const FloatingDots = () => {
     canvas.width = w;
     canvas.height = h;
     ctx.clearRect(0, 0, w, h);
+    timeRef.current = t;
 
-    dots.forEach((dot) => {
-      dot.x += dot.vx;
-      dot.y += dot.vy;
-      if (dot.x < 0 || dot.x > w) dot.vx *= -1;
-      if (dot.y < 0 || dot.y > h) dot.vy *= -1;
+    blobs.forEach((blob) => {
+      const wobbleX = Math.sin(t * blob.speed + blob.phase) * 60;
+      const wobbleY = Math.cos(t * blob.speed * 0.7 + blob.phase) * 40;
+      const pulseR = blob.r + Math.sin(t * blob.speed * 1.3 + blob.phase) * 20;
+
+      const x = blob.cx * w + wobbleX;
+      const y = blob.cy * h + wobbleY;
+
+      const gradient = ctx.createRadialGradient(x, y, 0, x, y, pulseR * 1.8);
+      const [hue, sat, light] = blob.color;
+      gradient.addColorStop(0, `hsla(${hue}, ${sat}%, ${light}%, 0.06)`);
+      gradient.addColorStop(0.5, `hsla(${hue}, ${sat}%, ${light}%, 0.03)`);
+      gradient.addColorStop(1, `hsla(${hue}, ${sat}%, ${light}%, 0)`);
 
       ctx.beginPath();
-      ctx.arc(dot.x, dot.y, dot.radius, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(156, 163, 175, ${dot.opacity})`;
+      // Draw organic blob shape using bezier curves
+      const points = 8;
+      for (let i = 0; i <= points; i++) {
+        const angle = (i / points) * Math.PI * 2;
+        const noise = Math.sin(angle * 3 + t * blob.speed * 2) * 15 + 
+                      Math.cos(angle * 2 + t * blob.speed * 1.5) * 10;
+        const r = pulseR + noise;
+        const px = x + Math.cos(angle) * r;
+        const py = y + Math.sin(angle) * r;
+        if (i === 0) ctx.moveTo(px, py);
+        else ctx.lineTo(px, py);
+      }
+      ctx.closePath();
+      ctx.fillStyle = gradient;
       ctx.fill();
     });
 
-    // Faint connecting lines between nearby dots
-    for (let i = 0; i < dots.length; i++) {
-      for (let j = i + 1; j < dots.length; j++) {
-        const dx = dots[i].x - dots[j].x;
-        const dy = dots[i].y - dots[j].y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 130) {
+    // Subtle grid dots
+    const spacing = 50;
+    const dotPhase = t * 0.0003;
+    for (let gx = 0; gx < w; gx += spacing) {
+      for (let gy = 0; gy < h; gy += spacing) {
+        const wave = Math.sin(gx * 0.01 + dotPhase) * Math.cos(gy * 0.01 + dotPhase);
+        const opacity = 0.03 + wave * 0.015;
+        if (opacity > 0.01) {
           ctx.beginPath();
-          ctx.moveTo(dots[i].x, dots[i].y);
-          ctx.lineTo(dots[j].x, dots[j].y);
-          ctx.strokeStyle = `rgba(156, 163, 175, ${0.035 * (1 - dist / 130)})`;
-          ctx.lineWidth = 0.5;
-          ctx.stroke();
+          ctx.arc(gx, gy, 0.8, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(156, 163, 175, ${opacity})`;
+          ctx.fill();
         }
       }
     }
@@ -62,7 +81,6 @@ const FloatingDots = () => {
     <canvas
       ref={canvasRef}
       className="absolute inset-0 w-full h-full pointer-events-none"
-      style={{ opacity: 0.8 }}
     />
   );
 };
@@ -94,22 +112,10 @@ const Hero = () => {
       onMouseLeave={handleMouseLeave}
       className="min-h-[85vh] flex flex-col justify-center pt-20 pb-12 relative overflow-hidden"
     >
-      {/* Interactive floating dot network */}
-      <FloatingDots />
+      {/* Morphing blob background */}
+      <MorphingBlobs />
 
-      {/* Floating gradient orbs */}
-      <motion.div
-        animate={{ x: [0, 30, -20, 0], y: [0, -40, 20, 0] }}
-        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-20 right-[15%] w-72 h-72 rounded-full bg-primary/5 blur-3xl pointer-events-none"
-      />
-      <motion.div
-        animate={{ x: [0, -30, 20, 0], y: [0, 30, -30, 0] }}
-        transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute bottom-20 left-[10%] w-56 h-56 rounded-full bg-accent/5 blur-3xl pointer-events-none"
-      />
-
-      <div className="max-w-[1200px] mx-auto px-6 w-full">
+      <div className="max-w-[1200px] mx-auto px-6 w-full relative z-10">
         {/* Avatar with 3D tilt */}
         <motion.div
           initial={{ opacity: 0, scale: 0.5, rotate: -10 }}
@@ -132,7 +138,7 @@ const Hero = () => {
           </div>
         </motion.div>
 
-        {/* Name with staggered character reveal */}
+        {/* Name */}
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -142,7 +148,7 @@ const Hero = () => {
           Aqib Javid
         </motion.h1>
 
-        {/* Role with typing effect feel */}
+        {/* Role */}
         <motion.p
           initial={{ opacity: 0, y: 30, filter: "blur(10px)" }}
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
@@ -166,7 +172,7 @@ const Hero = () => {
           </p>
         </motion.div>
 
-        {/* Interactive CTA area */}
+        {/* CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
