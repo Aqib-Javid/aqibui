@@ -15,14 +15,48 @@ const Index = () => {
 
   // Copy email on "c" key press
   useEffect(() => {
-    const handleKeyPress = (e: KeyboardEvent) => {
-      if (e.key === "c" && !e.metaKey && !e.ctrlKey && document.activeElement?.tagName !== "INPUT" && document.activeElement?.tagName !== "TEXTAREA") {
-        navigator.clipboard.writeText("contact@aqibjavid.com");
-        toast("Email copied!", { description: "contact@aqibjavid.com" });
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (
+        e.key === "c" &&
+        !e.metaKey &&
+        !e.ctrlKey &&
+        !e.altKey &&
+        document.activeElement?.tagName !== "INPUT" &&
+        document.activeElement?.tagName !== "TEXTAREA" &&
+        !window.getSelection()?.toString()
+      ) {
+        const email = "contact@aqibjavid.com";
+        // Try clipboard API first, fallback to execCommand
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(email).then(() => {
+            toast("Email copied!", { description: email });
+          }).catch(() => {
+            // Fallback
+            const textarea = document.createElement("textarea");
+            textarea.value = email;
+            textarea.style.position = "fixed";
+            textarea.style.opacity = "0";
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand("copy");
+            document.body.removeChild(textarea);
+            toast("Email copied!", { description: email });
+          });
+        } else {
+          const textarea = document.createElement("textarea");
+          textarea.value = email;
+          textarea.style.position = "fixed";
+          textarea.style.opacity = "0";
+          document.body.appendChild(textarea);
+          textarea.select();
+          document.execCommand("copy");
+          document.body.removeChild(textarea);
+          toast("Email copied!", { description: email });
+        }
       }
     };
-    window.addEventListener("keypress", handleKeyPress);
-    return () => window.removeEventListener("keypress", handleKeyPress);
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
   return (
