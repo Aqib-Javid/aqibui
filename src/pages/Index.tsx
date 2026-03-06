@@ -3,6 +3,7 @@ import { AnimatePresence } from "framer-motion";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Work from "@/components/Work";
+import About from "@/components/About";
 import Experience from "@/components/Experience";
 import Testimonials from "@/components/Testimonials";
 import Contact from "@/components/Contact";
@@ -13,7 +14,6 @@ import { toast } from "sonner";
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
 
-  // Copy email on "c" key press
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (
@@ -26,12 +26,10 @@ const Index = () => {
         !window.getSelection()?.toString()
       ) {
         const email = "contact@aqibjavid.com";
-        // Try clipboard API first, fallback to execCommand
         if (navigator.clipboard && navigator.clipboard.writeText) {
           navigator.clipboard.writeText(email).then(() => {
             toast("Email copied!", { description: email });
           }).catch(() => {
-            // Fallback
             const textarea = document.createElement("textarea");
             textarea.value = email;
             textarea.style.position = "fixed";
@@ -42,16 +40,6 @@ const Index = () => {
             document.body.removeChild(textarea);
             toast("Email copied!", { description: email });
           });
-        } else {
-          const textarea = document.createElement("textarea");
-          textarea.value = email;
-          textarea.style.position = "fixed";
-          textarea.style.opacity = "0";
-          document.body.appendChild(textarea);
-          textarea.select();
-          document.execCommand("copy");
-          document.body.removeChild(textarea);
-          toast("Email copied!", { description: email });
         }
       }
     };
@@ -73,6 +61,7 @@ const Index = () => {
           <main>
             <Hero />
             <Work />
+            <About />
             <Experience />
             <Testimonials />
             <Contact />

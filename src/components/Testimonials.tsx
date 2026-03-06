@@ -42,7 +42,7 @@ const testimonials = [
     name: "Marine Hyjazi",
     country: "Ivory Coast",
     flag: "🇨🇮",
-    quote: "Aqib was patient and very involved in our project. He was available and efficient, always taking my feedback as a chance to improve rather than as criticism. He took initiatives and we collaborated on developing certain ideas together.",
+    quote: "Aqib was patient and very involved in our project. He was available and efficient, always taking my feedback as a chance to improve rather than as criticism.",
     rating: 5,
   },
   {
@@ -56,21 +56,18 @@ const testimonials = [
 
 const Testimonials = () => {
   return (
-    <section id="testimonials" className="py-24 relative">
-      <div className="max-w-[1200px] mx-auto px-6">
+    <section id="testimonials" className="py-20 md:py-28 relative">
+      <div className="max-w-[1100px] mx-auto px-6">
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="mb-12"
         >
-          <span className="text-primary uppercase tracking-[0.3em] text-xs font-medium mb-3 block">
-            TESTIMONIALS
-          </span>
-          <p className="text-muted-foreground text-base md:text-lg max-w-xl">
-            What clients say about working with me.
-          </p>
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">
+            What clients say
+          </h2>
         </motion.div>
 
         <Carousel
@@ -82,24 +79,24 @@ const Testimonials = () => {
             {testimonials.map((testimonial, index) => (
               <CarouselItem key={testimonial.name} className="pl-4 md:basis-1/2 lg:basis-1/3">
                 <motion.div
-                  initial={{ opacity: 0, y: 40, scale: 0.95 }}
-                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
-                  transition={{ delay: index * 0.1, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                  transition={{ delay: index * 0.08, duration: 0.6 }}
                   className="h-full"
                 >
-                  <div className="p-6 md:p-8 border border-border/50 rounded-2xl h-full flex flex-col bg-card/80">
+                  <div className="glass-card rounded-2xl p-6 md:p-7 h-full flex flex-col">
                     <div className="flex gap-0.5 mb-4">
                       {Array.from({ length: testimonial.rating }).map((_, i) => (
-                        <Star key={i} className="w-3.5 h-3.5 fill-accent text-accent" />
+                        <Star key={i} className="w-3.5 h-3.5 fill-primary text-primary" />
                       ))}
                     </div>
-                    <blockquote className="flex-1 text-foreground/70 text-sm leading-relaxed mb-6">
+                    <blockquote className="flex-1 text-foreground/75 text-sm leading-relaxed mb-6">
                       "{testimonial.quote}"
                     </blockquote>
                     <div className="flex items-center gap-3 pt-4 border-t border-border/30">
-                      <div className="w-8 h-8 rounded-full bg-secondary flex items-center justify-center">
-                        <span className="text-foreground/70 font-medium text-xs">
+                      <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                        <span className="text-primary font-semibold text-xs">
                           {testimonial.name.split(' ').map(n => n[0]).join('')}
                         </span>
                       </div>
@@ -114,8 +111,8 @@ const Testimonials = () => {
             ))}
           </CarouselContent>
           <div className="flex justify-center gap-4 mt-8">
-            <CarouselPrevious className="relative static translate-y-0 bg-card border-border/50 hover:bg-secondary" />
-            <CarouselNext className="relative static translate-y-0 bg-card border-border/50 hover:bg-secondary" />
+            <CarouselPrevious className="relative static translate-y-0 glass-card hover:bg-primary/5" />
+            <CarouselNext className="relative static translate-y-0 glass-card hover:bg-primary/5" />
           </div>
         </Carousel>
       </div>
