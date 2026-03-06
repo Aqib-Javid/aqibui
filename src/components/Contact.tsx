@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Mail, Download } from "lucide-react";
+import { Mail, Download, ArrowUpRight } from "lucide-react";
 
 const BehanceIcon = () => (
   <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg">
@@ -19,99 +19,57 @@ const LinkedInIcon = () => (
   </svg>
 );
 
-const socials = [
-  {
-    name: "Email",
-    detail: "contact@aqibjavid.com",
-    href: "mailto:contact@aqibjavid.com",
-    icon: () => <Mail className="w-4 h-4" />,
-  },
-  {
-    name: "LinkedIn",
-    detail: "in/aqibdesigns",
-    href: "https://www.linkedin.com/in/aqibdesigns/",
-    icon: LinkedInIcon,
-  },
-  {
-    name: "Behance",
-    detail: "/aqib_designs",
-    href: "https://www.behance.net/aqib_designs",
-    icon: BehanceIcon,
-  },
-  {
-    name: "Dribbble",
-    detail: "aqib_design",
-    href: "https://dribbble.com/aqib_design",
-    icon: DribbbleIcon,
-  },
+const links = [
+  { name: "Mail me", href: "mailto:contact@aqibjavid.com", icon: Mail },
+  { name: "LinkedIn", href: "https://www.linkedin.com/in/aqibdesigns/", icon: LinkedInIcon },
+  { name: "Behance", href: "https://www.behance.net/aqib_designs", icon: BehanceIcon },
+  { name: "Dribbble", href: "https://dribbble.com/aqib_design", icon: DribbbleIcon },
+  { name: "Resume", href: "https://drive.google.com/file/d/1lqmkKM-55OerkPbyQ6ZvzQcdW0FcKeZq/view?usp=sharing", icon: Download },
 ];
 
 const Contact = () => {
   return (
-    <section id="contact" className="py-24 relative">
-      <div className="max-w-[1200px] mx-auto px-6">
+    <section id="contact" className="py-20 md:py-28 relative">
+      <div className="max-w-[1100px] mx-auto px-6">
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-12"
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="text-center mb-14"
         >
-          <span className="text-primary uppercase tracking-[0.3em] text-xs font-medium mb-3 block">
-            CONTACT
-          </span>
-          <p className="text-muted-foreground text-base md:text-lg max-w-xl">
-            You can contact me using the links below or drop me an email.
+          <h2 className="font-display text-3xl md:text-5xl font-bold text-foreground mb-4">
+            Let's connect
+          </h2>
+          <p className="text-muted-foreground text-base max-w-md mx-auto">
+            Have a project in mind? Let's talk about how we can work together.
           </p>
         </motion.div>
 
-        <div className="space-y-0">
-          {socials.map((social, i) => {
-            const IconComponent = social.icon;
+        <div className="flex flex-wrap justify-center gap-4">
+          {links.map((link, i) => {
+            const Icon = link.icon;
             return (
               <motion.a
-                key={social.name}
-                href={social.href}
-                target={social.name !== "Email" ? "_blank" : undefined}
+                key={link.name}
+                href={link.href}
+                target={link.name !== "Mail me" ? "_blank" : undefined}
                 rel="noopener noreferrer"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                className="group flex items-center justify-between py-5 border-t border-border/50 hover:border-foreground/20 transition-colors duration-300"
+                transition={{ delay: i * 0.08, duration: 0.5 }}
+                whileHover={{ y: -3, scale: 1.03 }}
+                className="glass-card rounded-2xl px-6 py-4 flex items-center gap-3 group hover:border-primary/30 transition-all duration-300"
               >
-                <span className="text-foreground font-medium text-sm flex items-center gap-2.5">
-                  <span className="text-muted-foreground group-hover:text-foreground transition-colors duration-300">
-                    <IconComponent />
-                  </span>
-                  {social.name}
+                <span className="text-muted-foreground group-hover:text-primary transition-colors duration-300">
+                  <Icon />
                 </span>
-                <span className="text-muted-foreground text-sm group-hover:text-foreground transition-colors duration-300">
-                  {social.detail}
-                </span>
+                <span className="font-medium text-sm text-foreground">{link.name}</span>
+                <ArrowUpRight className="w-3.5 h-3.5 text-muted-foreground/50 group-hover:text-primary transition-colors duration-300" />
               </motion.a>
             );
           })}
-          
-          {/* Resume */}
-          <motion.a
-            href="https://drive.google.com/file/d/1lqmkKM-55OerkPbyQ6ZvzQcdW0FcKeZq/view?usp=sharing"
-            target="_blank"
-            rel="noopener noreferrer"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.45, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="group flex items-center justify-between py-5 border-t border-border/50 hover:border-foreground/20 transition-colors duration-300"
-          >
-            <span className="text-foreground font-medium text-sm flex items-center gap-2.5">
-              <Download className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors duration-300" />
-              Resume
-            </span>
-            <span className="text-muted-foreground text-sm group-hover:text-foreground transition-colors duration-300">
-              Download PDF
-            </span>
-          </motion.a>
         </div>
       </div>
     </section>
