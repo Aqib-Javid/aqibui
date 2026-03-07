@@ -27,19 +27,19 @@ const Hero = () => {
         animate={{ x: [0, 40, 0], y: [0, -30, 0] }}
         transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
         className="absolute -top-10 right-[10%] w-[500px] h-[500px] rounded-full opacity-20 blur-[100px] pointer-events-none"
-        style={{ background: "radial-gradient(circle, hsl(180 70% 85%), transparent 70%)" }}
+        style={{ background: "radial-gradient(circle, hsl(210 80% 85%), transparent 70%)" }}
       />
       <motion.div
         animate={{ x: [0, -30, 0], y: [0, 20, 0] }}
         transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
         className="absolute top-[30%] left-[5%] w-[400px] h-[400px] rounded-full opacity-15 blur-[100px] pointer-events-none"
-        style={{ background: "radial-gradient(circle, hsl(290 40% 88%), transparent 70%)" }}
+        style={{ background: "radial-gradient(circle, hsl(280 50% 85%), transparent 70%)" }}
       />
       <motion.div
         animate={{ x: [0, 20, 0], y: [0, -15, 0] }}
         transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
         className="absolute bottom-[10%] right-[30%] w-[350px] h-[350px] rounded-full opacity-15 blur-[100px] pointer-events-none"
-        style={{ background: "radial-gradient(circle, hsl(170 50% 88%), transparent 70%)" }}
+        style={{ background: "radial-gradient(circle, hsl(340 45% 88%), transparent 70%)" }}
       />
 
       <div className="max-w-[1100px] mx-auto px-6 w-full relative z-10">

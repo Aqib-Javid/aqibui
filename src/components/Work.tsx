@@ -18,20 +18,6 @@ const projects = [
     href: "https://www.figma.com/design/XaCfE8zMvk0ZhP21eeqeUu/HairstyleDiscovery-Web-App?m=auto&t=hLvRRi5Y9U0pEulv-6",
   },
   {
-    title: "Maktab",
-    description: "Product Design",
-    year: "2024",
-    image: "https://framerusercontent.com/images/lS2JBP2RGiWlbMACBoqI59mvtI.png?width=1280&height=960",
-    href: "https://usemaktab.com/",
-  },
-  {
-    title: "Donna AI Receptionist",
-    description: "AI Product",
-    year: "2024",
-    image: "https://framerusercontent.com/images/KX5sHXOoo12HjwkGFDsPXUoekIQ.png?width=1280&height=960",
-    href: "https://donnaio.ai/",
-  },
-  {
     title: "Sanialarm",
     description: "Web Design",
     year: "2023",
