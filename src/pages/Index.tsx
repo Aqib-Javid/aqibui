@@ -10,8 +10,6 @@ import Footer from "@/components/Footer";
 import { toast } from "sonner";
 
 const Index = () => {
-  const [isLoading, setIsLoading] = useState(true);
-
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (
