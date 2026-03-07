@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import aqibAvatar from "@/assets/aqib-avatar.png";
 import {
   Figma, Layers, Palette, Layout, Smartphone, PenTool, Monitor
 } from "lucide-react";
