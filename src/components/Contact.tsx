@@ -62,7 +62,7 @@ const Contact = () => {
                 whileHover={{ y: -3, scale: 1.03 }}
                 className="glass-card rounded-2xl px-6 py-4 flex items-center gap-3 group hover:border-primary/30 transition-all duration-300 hover:bg-gradient-to-r hover:from-primary/5 hover:to-accent/5"
               >
-                <span className="text-muted-foreground group-hover:text-primary transition-colors duration-300">
+                <span className="text-muted-foreground group-hover:text-gradient-primary transition-colors duration-300">
                   <Icon />
                 </span>
                 <span className="font-medium text-sm text-foreground">{link.name}</span>
