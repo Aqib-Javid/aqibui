@@ -44,28 +44,18 @@ const Index = () => {
   }, []);
 
   return (
-    <>
-      <AnimatePresence mode="wait">
-        {isLoading && (
-          <LoadingScreen onComplete={() => setIsLoading(false)} />
-        )}
-      </AnimatePresence>
-
-      {!isLoading && (
-        <div className="min-h-screen bg-background text-foreground">
-          <Header />
-          <main>
-            <Hero />
-            <Work />
-            <About />
-            <Experience />
-            <Testimonials />
-            <Contact />
-          </main>
-          <Footer />
-        </div>
-      )}
-    </>
+    <div className="min-h-screen bg-background text-foreground">
+      <Header />
+      <main>
+        <Hero />
+        <Work />
+        <About />
+        <Experience />
+        <Testimonials />
+        <Contact />
+      </main>
+      <Footer />
+    </div>
   );
 };
 

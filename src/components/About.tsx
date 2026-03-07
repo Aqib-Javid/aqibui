@@ -5,7 +5,7 @@ const stats = [
   { value: "5+", label: "Years of Experience", icon: Briefcase },
   { value: "200+", label: "Projects Delivered", icon: FolderOpen },
   { value: "100+", label: "Happy Clients", icon: Users },
-  { value: "15+", label: "Design Systems Built", icon: Rocket },
+  { value: "10+", label: "Industries Served", icon: Rocket },
 ];
 
 const About = () => {
