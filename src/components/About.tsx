@@ -2,10 +2,10 @@ import { motion } from "framer-motion";
 import { Briefcase, Users, Rocket, FolderOpen } from "lucide-react";
 
 const stats = [
-  { value: "5+", label: "Years", icon: Briefcase },
-  { value: "10+", label: "Teams", icon: Users },
-  { value: "2x", label: "Founding Designer", icon: Rocket },
-  { value: "50+", label: "Projects Shipped", icon: FolderOpen },
+  { value: "5+", label: "Years of Experience", icon: Briefcase },
+  { value: "50+", label: "Projects Delivered", icon: FolderOpen },
+  { value: "30+", label: "Happy Clients", icon: Users },
+  { value: "3", label: "Industries Impacted", icon: Rocket },
 ];
 
 const About = () => {
