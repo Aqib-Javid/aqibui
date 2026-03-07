@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react";
-import { AnimatePresence } from "framer-motion";
+import { useEffect } from "react";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Work from "@/components/Work";
@@ -8,7 +7,6 @@ import Experience from "@/components/Experience";
 import Testimonials from "@/components/Testimonials";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-import LoadingScreen from "@/components/LoadingScreen";
 import { toast } from "sonner";
 
 const Index = () => {
