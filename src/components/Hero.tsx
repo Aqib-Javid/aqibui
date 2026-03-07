@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import aqibAvatar from "@/assets/aqib-avatar.png";
 import {
   Figma, Layers, Palette, Layout, Smartphone, PenTool, Monitor
 } from "lucide-react";
@@ -48,13 +47,8 @@ const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="flex items-center gap-3 mb-8"
+          className="mb-8"
         >
-          <img
-            src={aqibAvatar}
-            alt="Aqib Javid"
-            className="w-12 h-12 rounded-full object-cover ring-2 ring-primary/20 ring-offset-2 ring-offset-transparent"
-          />
           <span className="text-muted-foreground text-lg">
             Hello, I'm <span className="text-foreground font-semibold font-display">Aqib</span>
           </span>
