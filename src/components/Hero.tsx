@@ -33,7 +33,7 @@ const Hero = () => {
         animate={{ x: [0, -30, 0], y: [0, 20, 0] }}
         transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
         className="absolute top-[30%] left-[5%] w-[400px] h-[400px] rounded-full opacity-15 blur-[100px] pointer-events-none"
-        style={{ background: "radial-gradient(circle, hsl(290 40% 88%), transparent 70%)" }}
+        style={{ background: "radial-gradient(circle, hsl(280 50% 85%), transparent 70%)" }}
       />
       <motion.div
         animate={{ x: [0, 20, 0], y: [0, -15, 0] }}
