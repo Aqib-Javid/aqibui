@@ -66,7 +66,7 @@ const Contact = () => {
                   <Icon />
                 </span>
                 <span className="font-medium text-sm text-foreground">{link.name}</span>
-                <ArrowUpRight className="w-3.5 h-3.5 text-muted-foreground/50 group-hover:text-primary transition-colors duration-300" />
+                <ArrowUpRight className="w-3.5 h-3.5 text-muted-foreground/50 group-hover:text-accent transition-colors duration-300" />
               </motion.a>
             );
           })}

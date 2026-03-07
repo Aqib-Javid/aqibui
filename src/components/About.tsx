@@ -3,9 +3,9 @@ import { Briefcase, Users, Rocket, FolderOpen } from "lucide-react";
 
 const stats = [
   { value: "5+", label: "Years of Experience", icon: Briefcase },
-  { value: "50+", label: "Projects Delivered", icon: FolderOpen },
-  { value: "30+", label: "Happy Clients", icon: Users },
-  { value: "3", label: "Industries Impacted", icon: Rocket },
+  { value: "200+", label: "Projects Delivered", icon: FolderOpen },
+  { value: "100+", label: "Happy Clients", icon: Users },
+  { value: "15+", label: "Design Systems Built", icon: Rocket },
 ];
 
 const About = () => {
