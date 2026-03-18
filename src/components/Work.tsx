@@ -60,14 +60,14 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: n
       href={project.href}
       target="_blank"
       rel="noopener noreferrer"
-      initial={{ opacity: 0, y: 50 }}
+      initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.6, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.6, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
       className="group block"
     >
       {/* Card */}
-      <div className="relative aspect-square rounded-2xl overflow-hidden bg-secondary/50">
+      <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-secondary/30 shadow-[var(--shadow-card)] border border-border/40 group-hover:shadow-xl group-hover:border-primary/20 transition-all duration-500">
         {/* Image */}
         <img
           src={project.image}
@@ -76,7 +76,7 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: n
           loading="lazy"
         />
 
-        {/* Hover overlay with info */}
+        {/* Hover overlay */}
         <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/60 transition-all duration-400 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100">
           <h3 className="text-primary-foreground font-display font-bold text-xl md:text-2xl text-center px-4 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
             {project.title}
@@ -90,10 +90,18 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: n
         </div>
       </div>
 
-      {/* Title below card */}
-      <p className="mt-4 text-center text-foreground font-medium text-sm tracking-wide group-hover:text-primary transition-colors duration-300">
-        {project.title}
-      </p>
+      {/* Info below card */}
+      <div className="mt-4 flex items-center justify-between px-1">
+        <div>
+          <p className="text-foreground font-display font-semibold text-base group-hover:text-primary transition-colors duration-300">
+            {project.title}
+          </p>
+          <p className="text-muted-foreground text-sm mt-0.5">
+            {project.description}
+          </p>
+        </div>
+        <span className="text-muted-foreground text-sm tabular-nums">{project.year}</span>
+      </div>
     </motion.a>
   );
 };
@@ -101,7 +109,7 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: n
 const Work = () => {
   return (
     <section id="work" className="py-20 md:py-28 relative">
-      <div className="max-w-[1100px] mx-auto px-6">
+      <div className="max-w-[960px] mx-auto px-6">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -115,8 +123,8 @@ const Work = () => {
           </h2>
         </motion.div>
 
-        {/* 3-column grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        {/* 2-column grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-10">
           {projects.map((project, index) => (
             <ProjectCard key={project.title} project={project} index={index} />
           ))}
