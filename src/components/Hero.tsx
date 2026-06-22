@@ -1,132 +1,100 @@
-import { motion } from "framer-motion";
-import {
-  Figma, Layers, Palette, Layout, Smartphone, PenTool, Monitor
-} from "lucide-react";
+import { motion, type Variants } from "framer-motion";
+import { ArrowDown } from "lucide-react";
 
-const skills = [
-  { name: "UX Design", icon: Layers },
-  { name: "UI Design", icon: Layout },
-  { name: "Visuals", icon: Palette },
-  { name: "Systems", icon: Monitor },
-  { name: "Prototyping", icon: PenTool },
-  { name: "Mobile", icon: Smartphone },
-];
+const badges = ["UX Design", "Product Design", "Design Systems", "Mobile Apps", "SaaS"];
+
+const reveal: Variants = {
+  hidden: { opacity: 0, y: 60 },
+  show: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.9, delay: 0.1 + i * 0.08, ease: [0.22, 1, 0.36, 1] as const },
+  }),
+};
 
 const Hero = () => {
   return (
-    <section className="min-h-screen flex flex-col justify-center pt-28 pb-16 relative overflow-hidden">
-      {/* Gradient background */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{ background: "var(--gradient-hero)" }}
-      />
+    <section className="relative min-h-screen flex flex-col justify-end overflow-hidden pt-32 pb-20">
+      {/* Background blobs */}
+      <div aria-hidden className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-[10%] left-[5%] w-[520px] h-[520px] rounded-full opacity-40 blur-[120px] animate-blob"
+             style={{ background: "radial-gradient(circle, hsl(255 92% 60% / 0.55), transparent 70%)" }} />
+        <div className="absolute bottom-[5%] right-[5%] w-[600px] h-[600px] rounded-full opacity-30 blur-[140px] animate-blob"
+             style={{ background: "radial-gradient(circle, hsl(280 80% 55% / 0.5), transparent 70%)", animationDelay: "4s" }} />
+        <div className="absolute inset-0 opacity-[0.025]"
+             style={{ backgroundImage: "linear-gradient(hsl(var(--foreground)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)", backgroundSize: "80px 80px" }} />
+      </div>
 
-      {/* Soft floating gradient orbs matching reference */}
-      <motion.div
-        animate={{ x: [0, 40, 0], y: [0, -30, 0] }}
-        transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute -top-10 right-[10%] w-[500px] h-[500px] rounded-full opacity-20 blur-[100px] pointer-events-none"
-        style={{ background: "radial-gradient(circle, hsl(210 80% 85%), transparent 70%)" }}
-      />
-      <motion.div
-        animate={{ x: [0, -30, 0], y: [0, 20, 0] }}
-        transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-[30%] left-[5%] w-[400px] h-[400px] rounded-full opacity-15 blur-[100px] pointer-events-none"
-        style={{ background: "radial-gradient(circle, hsl(280 50% 85%), transparent 70%)" }}
-      />
-      <motion.div
-        animate={{ x: [0, 20, 0], y: [0, -15, 0] }}
-        transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute bottom-[10%] right-[30%] w-[350px] h-[350px] rounded-full opacity-15 blur-[100px] pointer-events-none"
-        style={{ background: "radial-gradient(circle, hsl(340 45% 88%), transparent 70%)" }}
-      />
-
-      <div className="max-w-[1100px] mx-auto px-6 w-full relative z-10">
-        {/* Greeting */}
+      <div className="relative z-10 max-w-[1280px] mx-auto px-6 md:px-10 w-full">
+        {/* Eyebrow */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="mb-8"
+          custom={0}
+          initial="hidden"
+          animate="show"
+          variants={reveal}
+          className="flex items-center gap-3 mb-10"
         >
-          <span className="text-muted-foreground text-lg">
-            Hello, I'm <span className="text-foreground font-semibold font-display">Aqib</span>
+          <span className="h-px w-12 bg-foreground/30" />
+          <span className="text-[11px] uppercase tracking-[0.3em] text-muted-foreground">
+            Hello, I'm Aqib — Senior Product Designer
           </span>
         </motion.div>
 
-        {/* Main Statement */}
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.45 }}
-          className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight mb-10 max-w-4xl"
-        >
-          <span className="text-foreground/80">A multi-disciplinary </span>
-          <span className="text-gradient-primary">Product Designer</span>
-          <span className="text-foreground/80"> with a strong foundation in </span>
-          <span className="text-gradient-primary">UX & design systems</span>
-          <span className="text-foreground/80">.</span>
-        </motion.h1>
+        {/* Oversized editorial heading */}
+        <h1 className="editorial-heading text-foreground text-[15vw] md:text-[11vw] lg:text-[10rem] xl:text-[12rem] leading-[0.92]">
+          <motion.span custom={1} initial="hidden" animate="show" variants={reveal} className="block">
+            Designing
+          </motion.span>
+          <motion.span custom={2} initial="hidden" animate="show" variants={reveal} className="block">
+            <span className="italic font-light text-gradient-primary pr-4">elegant</span>
+            <span className="text-foreground/40">·</span>
+          </motion.span>
+          <motion.span custom={3} initial="hidden" animate="show" variants={reveal} className="block">
+            digital experiences.
+          </motion.span>
+        </h1>
 
-        {/* Currently / Previously */}
+        {/* Description + badges row */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.65 }}
-          className="flex flex-col sm:flex-row gap-4 mb-16"
+          custom={4}
+          initial="hidden"
+          animate="show"
+          variants={reveal}
+          className="mt-14 md:mt-20 grid md:grid-cols-[1.2fr_1fr] gap-10 items-end"
         >
-          <div className="flex items-center gap-3">
-            <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold tracking-wide">
-              Currently
-            </span>
-            <span className="text-muted-foreground text-sm">
-              Sr Product Designer at <span className="text-foreground font-medium">Algorithm</span>
-            </span>
-          </div>
-          <div className="flex items-center gap-3">
-            <span className="px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-semibold tracking-wide">
-              Previously
-            </span>
-            <span className="text-muted-foreground text-sm">
-              ItecExperts · Appick · Freelance
-            </span>
-          </div>
-        </motion.div>
-
-        {/* My Stack */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-        >
-          <div className="glass-card rounded-2xl p-6 md:p-8 inline-block">
-            <p className="text-xs font-semibold text-muted-foreground tracking-widest uppercase mb-5 text-center">
-              My Stack
-            </p>
-            <div className="flex flex-wrap justify-center gap-6 md:gap-10">
-              {skills.map((skill, i) => {
-                const Icon = skill.icon;
-                return (
-                  <motion.div
-                    key={skill.name}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.4, delay: 0.9 + i * 0.06 }}
-                    className="flex flex-col items-center gap-2 group cursor-default"
-                  >
-                    <div className="w-12 h-12 rounded-xl bg-background/80 border border-border/50 flex items-center justify-center group-hover:border-primary/30 group-hover:bg-primary/5 transition-all duration-300">
-                      <Icon className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors duration-300" />
-                    </div>
-                    <span className="text-[11px] font-medium text-muted-foreground group-hover:text-foreground transition-colors duration-300">
-                      {skill.name}
-                    </span>
-                  </motion.div>
-                );
-              })}
-            </div>
+          <p className="text-muted-foreground text-lg md:text-xl leading-relaxed max-w-xl">
+            A multi-disciplinary product designer with 5+ years crafting scalable systems, intuitive
+            interfaces and human-centered products across fintech, SaaS and mobility.
+          </p>
+          <div className="flex flex-wrap gap-2 md:justify-end">
+            {badges.map((b, i) => (
+              <motion.span
+                key={b}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.9 + i * 0.07, duration: 0.5 }}
+                whileHover={{ y: -3, borderColor: "hsl(var(--primary))" }}
+                className="px-3.5 py-1.5 rounded-full border border-border text-xs uppercase tracking-[0.15em] text-foreground/70 hover:text-foreground transition-colors"
+              >
+                {b}
+              </motion.span>
+            ))}
           </div>
         </motion.div>
       </div>
+
+      {/* Scroll indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.4, duration: 1 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-muted-foreground"
+      >
+        <span className="text-[10px] uppercase tracking-[0.3em]">Scroll</span>
+        <motion.div animate={{ y: [0, 6, 0] }} transition={{ duration: 1.8, repeat: Infinity }}>
+          <ArrowDown className="w-4 h-4" />
+        </motion.div>
+      </motion.div>
     </section>
   );
 };
