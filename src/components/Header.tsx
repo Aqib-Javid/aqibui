@@ -1,52 +1,60 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import aqibAvatar from "@/assets/aqib-avatar.png";
+
+const navItems = [
+  { label: "Work", id: "work" },
+  { label: "About", id: "about" },
+  { label: "Experience", id: "experience" },
+  { label: "Testimonials", id: "testimonials" },
+  { label: "Contact", id: "contact" },
+];
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 30);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const scrollToSection = (id: string) => {
     setIsMenuOpen(false);
     setTimeout(() => {
-      const element = document.getElementById(id);
-      if (element) {
-        const headerOffset = 70;
-        const elementPosition = element.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-        window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+      const el = document.getElementById(id);
+      if (el) {
+        const y = el.getBoundingClientRect().top + window.pageYOffset - 80;
+        window.scrollTo({ top: y, behavior: "smooth" });
       }
-    }, 100);
+    }, 80);
   };
-
-  const navItems = [
-    { label: "projects", id: "work" },
-    { label: "about", id: "about" },
-    { label: "contact", id: "contact" },
-  ];
 
   return (
     <motion.header
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: 0.2 }}
-      className="fixed top-0 left-0 right-0 z-50"
+      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "py-3" : "py-6"}`}
     >
-      <nav className="max-w-[1100px] mx-auto px-6 py-4 mt-4">
-        <div className="glass-card rounded-2xl px-5 py-3 flex items-center justify-between">
-          {/* Logo / Avatar */}
-          <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="flex items-center gap-3">
-            <img src={aqibAvatar} alt="Aqib Javid" className="w-8 h-8 rounded-full object-cover" />
-            <span className="font-display font-semibold text-foreground text-sm hidden sm:inline">Aqib Javid</span>
+      <div className="max-w-[1280px] mx-auto px-6 md:px-10">
+        <div className={`flex items-center justify-between transition-all duration-500 ${scrolled ? "glass-nav rounded-full px-5 py-2.5" : "px-0 py-0"}`}>
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            className="flex items-center gap-2 group"
+          >
+            <span className="w-2 h-2 rounded-full bg-primary group-hover:scale-125 transition-transform" />
+            <span className="font-display font-semibold text-foreground text-sm tracking-tight">Aqib Javid</span>
           </button>
 
-          {/* Desktop Nav */}
-          <ul className="hidden md:flex items-center gap-8">
+          <ul className="hidden md:flex items-center gap-9">
             {navItems.map((item) => (
               <li key={item.id}>
                 <button
                   onClick={() => scrollToSection(item.id)}
-                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-300"
+                  className="link-underline text-[13px] uppercase tracking-[0.18em] text-muted-foreground hover:text-foreground transition-colors duration-300"
                 >
                   {item.label}
                 </button>
@@ -54,47 +62,51 @@ const Header = () => {
             ))}
           </ul>
 
-          {/* Mobile Menu Button */}
+          <a
+            href="mailto:contact@aqibjavid.com"
+            className="hidden md:inline-flex items-center gap-2 text-[13px] uppercase tracking-[0.18em] text-foreground hover:text-primary transition-colors"
+          >
+            <span className="relative flex w-2 h-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-60" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
+            </span>
+            Available
+          </a>
+
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="md:hidden p-2 text-foreground"
             aria-label="Toggle menu"
           >
-            {isMenuOpen ? <X size={18} /> : <Menu size={18} />}
+            {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
 
-        {/* Mobile Menu */}
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div
-              initial={{ opacity: 0, y: -10, scale: 0.98 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -10, scale: 0.98 }}
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.2 }}
-              className="md:hidden glass-card rounded-2xl mt-2 px-5 py-4"
+              className="md:hidden glass-nav rounded-2xl mt-3 px-6 py-5"
             >
-              <ul className="flex flex-col gap-3">
-                {navItems.map((item, i) => (
-                  <motion.li
-                    key={item.id}
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.05 * i }}
-                  >
+              <ul className="flex flex-col gap-4">
+                {navItems.map((item) => (
+                  <li key={item.id}>
                     <button
                       onClick={() => scrollToSection(item.id)}
-                      className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                      className="text-base font-display text-foreground"
                     >
                       {item.label}
                     </button>
-                  </motion.li>
+                  </li>
                 ))}
               </ul>
             </motion.div>
           )}
         </AnimatePresence>
-      </nav>
+      </div>
     </motion.header>
   );
 };
