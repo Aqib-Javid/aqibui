@@ -12,9 +12,10 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ['Syne', 'sans-serif'],
-        body: ['Plus Jakarta Sans', 'sans-serif'],
-        sans: ['Plus Jakarta Sans', 'sans-serif'],
+        display: ['Instrument Serif', 'serif'],
+        body: ['Geist Sans', 'sans-serif'],
+        sans: ['Geist Sans', 'sans-serif'],
+        mono: ['Geist Mono', 'monospace'],
       },
       colors: {
         border: "hsl(var(--border))",

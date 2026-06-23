@@ -12,80 +12,68 @@ const projects = [
   { title: "Diet Achiever", category: "Web App", year: "2022", description: "Goal-tracking nutrition platform with a friendly visual system.", image: "https://framerusercontent.com/images/CmD8B011kEkOSFTzmAuDJkEGmfA.png?width=1280&height=960", href: "https://dietachiever.com/" },
 ];
 
-const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: number }) => {
-  const alt = index % 2 === 1;
-  return (
-    <motion.a
-      href={project.href}
-      target="_blank"
-      rel="noopener noreferrer"
-      initial={{ opacity: 0, y: 60 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-      className={`group grid md:grid-cols-12 gap-6 md:gap-10 items-center ${alt ? "md:[direction:rtl]" : ""}`}
-    >
-      {/* Image */}
-      <div className="md:col-span-8 [direction:ltr]">
-        <div className="relative aspect-[16/10] rounded-2xl overflow-hidden bg-card border border-border/60">
-          <motion.img
-            src={project.image}
-            alt={project.title}
-            loading="lazy"
-            className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.06]"
-          />
-          <div className="absolute inset-0 bg-gradient-to-tr from-background/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-          <div className="absolute top-5 left-5 right-5 flex items-center justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-            <span className="text-xs uppercase tracking-[0.2em] text-foreground/80">{project.category}</span>
-            <span className="text-xs tabular-nums text-foreground/80">{project.year}</span>
-          </div>
-          <div className="absolute bottom-5 right-5 w-12 h-12 rounded-full bg-primary text-primary-foreground flex items-center justify-center translate-y-3 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-            <ArrowUpRight className="w-5 h-5" />
-          </div>
-        </div>
+const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: number }) => (
+  <motion.a
+    href={project.href}
+    target="_blank"
+    rel="noopener noreferrer"
+    initial={{ opacity: 0, y: 50 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, margin: "-80px" }}
+    transition={{ duration: 0.85, delay: (index % 2) * 0.1, ease: [0.22, 1, 0.36, 1] }}
+    className="group block"
+  >
+    <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-card border border-border/60 mb-6">
+      <motion.img
+        src={project.image}
+        alt={project.title}
+        loading="lazy"
+        className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.06]"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      <div className="absolute bottom-5 right-5 w-12 h-12 rounded-full bg-primary text-primary-foreground flex items-center justify-center translate-y-3 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+        <ArrowUpRight className="w-5 h-5" />
       </div>
-
-      {/* Text */}
-      <div className="md:col-span-4 [direction:ltr]">
-        <div className="flex items-center gap-3 text-[11px] uppercase tracking-[0.25em] text-muted-foreground mb-4">
-          <span>{String(index + 1).padStart(2, "0")}</span>
-          <span className="h-px flex-1 bg-border" />
-          <span>{project.year}</span>
-        </div>
-        <h3 className="editorial-heading text-3xl md:text-4xl text-foreground mb-3 group-hover:text-gradient-primary transition-all">
+    </div>
+    <div className="flex items-start justify-between gap-6">
+      <div>
+        <h3 className="editorial-heading text-3xl md:text-4xl text-foreground group-hover:text-gradient-primary transition-all">
           {project.title}
         </h3>
-        <p className="text-sm uppercase tracking-[0.15em] text-primary mb-4">{project.category}</p>
-        <p className="text-muted-foreground text-[15px] leading-relaxed">{project.description}</p>
+        <p className="text-muted-foreground text-[14px] leading-relaxed mt-2 max-w-md">{project.description}</p>
       </div>
-    </motion.a>
-  );
-};
+      <div className="text-right shrink-0">
+        <p className="mono text-[11px] uppercase tracking-[0.2em] text-primary">{project.category}</p>
+        <p className="mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground mt-1 tabular-nums">{project.year}</p>
+      </div>
+    </div>
+  </motion.a>
+);
 
 const Work = () => {
   return (
     <section id="work" className="py-28 md:py-40 relative">
-      <div className="max-w-[1280px] mx-auto px-6 md:px-10">
+      <div className="max-w-[1400px] mx-auto px-6 md:px-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-20 md:mb-28"
+          className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 md:mb-24"
         >
           <div>
-            <span className="text-[11px] uppercase tracking-[0.3em] text-muted-foreground">Selected — 2022 / 2024</span>
+            <span className="mono text-[11px] uppercase tracking-[0.28em] text-muted-foreground">Selected — 2022 / 2024</span>
             <h2 className="editorial-heading text-foreground text-6xl md:text-8xl mt-4">
-              Featured <span className="italic font-light text-gradient-primary">work</span>
+              Featured <span className="italic text-gradient-primary">work</span>
             </h2>
           </div>
           <p className="text-muted-foreground max-w-sm text-[15px] leading-relaxed">
-            A handpicked selection of projects spanning product, web and mobile — each one a story
-            of detail, craft and intent.
+            A handpicked selection of projects spanning product, web and mobile — each a story of
+            detail, craft and intent.
           </p>
         </motion.div>
 
-        <div className="space-y-28 md:space-y-40">
+        <div className="grid md:grid-cols-2 gap-x-10 gap-y-20 md:gap-y-28">
           {projects.map((p, i) => (
             <ProjectCard key={p.title} project={p} index={i} />
           ))}
