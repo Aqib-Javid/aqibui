@@ -4,39 +4,30 @@
 
 @layer base {
   :root {
-    /* Dark editorial palette */
-    --background: 0 0% 5.5%;          /* #0E0E0E */
-    --foreground: 0 0% 96.9%;         /* #F7F7F7 */
-
+    --background: 0 0% 5.5%;
+    --foreground: 0 0% 96.9%;
     --card: 0 0% 7.5%;
     --card-foreground: 0 0% 96.9%;
-
     --popover: 0 0% 7.5%;
     --popover-foreground: 0 0% 96.9%;
-
-    --primary: 255 92% 76%;           /* Soft purple #A78BFA */
+    --primary: 255 92% 76%;
     --primary-foreground: 0 0% 5.5%;
-
     --secondary: 0 0% 10%;
     --secondary-foreground: 0 0% 96.9%;
-
     --muted: 0 0% 11%;
     --muted-foreground: 0 0% 60%;
-
     --accent: 255 92% 76%;
     --accent-foreground: 0 0% 5.5%;
-
     --destructive: 0 70% 55%;
     --destructive-foreground: 0 0% 96.9%;
-
     --border: 0 0% 14%;
     --input: 0 0% 14%;
     --ring: 255 92% 76%;
-
     --radius: 1rem;
 
-    --font-display: 'Syne', sans-serif;
-    --font-body: 'Plus Jakarta Sans', sans-serif;
+    --font-display: 'Instrument Serif', serif;
+    --font-body: 'Geist Sans', sans-serif;
+    --font-mono: 'Geist Mono', monospace;
 
     --gradient-accent: linear-gradient(135deg, hsl(255 92% 76%) 0%, hsl(280 85% 70%) 100%);
     --shadow-elegant: 0 30px 80px -30px hsl(255 92% 60% / 0.35);
@@ -44,14 +35,8 @@
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
-
-  html {
-    scroll-behavior: smooth;
-  }
-
+  * { @apply border-border; }
+  html { scroll-behavior: smooth; }
   body {
     @apply bg-background text-foreground antialiased;
     font-family: var(--font-body);
@@ -60,29 +45,18 @@
       radial-gradient(ellipse 60% 40% at 100% 30%, hsl(280 60% 30% / 0.12), transparent 60%);
     background-attachment: fixed;
   }
-
-  /* Grain overlay */
   body::before {
     content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 1;
-    opacity: 0.06;
-    mix-blend-mode: overlay;
+    position: fixed; inset: 0; pointer-events: none; z-index: 1;
+    opacity: 0.05; mix-blend-mode: overlay;
     background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
   }
-
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
-    letter-spacing: -0.02em;
+    letter-spacing: -0.01em;
+    font-weight: 400;
   }
-
-  ::selection {
-    background: hsl(var(--primary) / 0.4);
-    color: hsl(var(--foreground));
-  }
-
+  ::selection { background: hsl(var(--primary) / 0.4); color: hsl(var(--foreground)); }
   ::-webkit-scrollbar { width: 8px; height: 8px; }
   ::-webkit-scrollbar-track { background: hsl(var(--background)); }
   ::-webkit-scrollbar-thumb { background: hsl(var(--border)); border-radius: 4px; }
@@ -96,47 +70,32 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
-
   .glass-card {
     background: hsl(0 0% 100% / 0.03);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid hsl(0 0% 100% / 0.08);
   }
-
   .glass-nav {
     background: hsl(0 0% 5% / 0.6);
     backdrop-filter: blur(24px) saturate(180%);
     -webkit-backdrop-filter: blur(24px) saturate(180%);
     border: 1px solid hsl(0 0% 100% / 0.07);
   }
-
   .editorial-heading {
     font-family: var(--font-display);
-    font-weight: 600;
-    letter-spacing: -0.04em;
+    font-weight: 400;
+    letter-spacing: -0.02em;
     line-height: 0.95;
   }
-
-  .marquee-mask {
-    mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
-  }
-
-  .link-underline {
-    position: relative;
-  }
+  .mono { font-family: var(--font-mono); letter-spacing: 0; }
+  .marquee-mask { mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent); }
+  .link-underline { position: relative; }
   .link-underline::after {
-    content: "";
-    position: absolute;
-    left: 0; right: 0; bottom: -4px;
-    height: 1px;
-    background: currentColor;
-    transform: scaleX(0);
-    transform-origin: right;
+    content: ""; position: absolute; left: 0; right: 0; bottom: -4px;
+    height: 1px; background: currentColor;
+    transform: scaleX(0); transform-origin: right;
     transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
   }
-  .link-underline:hover::after {
-    transform: scaleX(1);
-    transform-origin: left;
-  }
+  .link-underline:hover::after { transform: scaleX(1); transform-origin: left; }
 }
