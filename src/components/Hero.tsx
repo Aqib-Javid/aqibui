@@ -89,7 +89,7 @@ const Hero = () => {
           <ArrowDown className="w-4 h-4" />
         </motion.div>
       </motion.div>
-    </section>
+    </motion.section>
   );
 };
 
