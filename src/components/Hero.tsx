@@ -13,7 +13,12 @@ const reveal: Variants = {
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex flex-col justify-end overflow-hidden pt-32 pb-16">
+    <motion.section
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: false, margin: "-15%" }}
+      className="relative min-h-screen flex flex-col justify-end overflow-hidden pt-32 pb-16"
+    >
       <div aria-hidden className="absolute inset-0 pointer-events-none">
         <div className="absolute top-[10%] left-[5%] w-[520px] h-[520px] rounded-full opacity-40 blur-[120px] animate-blob"
              style={{ background: "radial-gradient(circle, hsl(255 92% 60% / 0.55), transparent 70%)" }} />
@@ -84,7 +89,7 @@ const Hero = () => {
           <ArrowDown className="w-4 h-4" />
         </motion.div>
       </motion.div>
-    </section>
+    </motion.section>
   );
 };
 
