@@ -64,6 +64,9 @@ export default {
         "fade-in": { from: { opacity: "0" }, to: { opacity: "1" } },
         "marquee": { from: { transform: "translateX(0)" }, to: { transform: "translateX(-50%)" } },
         "blob": { "0%,100%": { transform: "translate(0,0) scale(1)" }, "50%": { transform: "translate(30px,-40px) scale(1.1)" } },
+        "float-slow": { "0%,100%": { transform: "translateY(0)" }, "50%": { transform: "translateY(-18px)" } },
+        "float-slower": { "0%,100%": { transform: "translateY(0)" }, "50%": { transform: "translateY(-10px)" } },
+        "marquee-slow": { from: { transform: "translateX(0)" }, to: { transform: "translateX(-50%)" } },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
