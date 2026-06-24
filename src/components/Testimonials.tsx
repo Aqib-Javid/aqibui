@@ -1,83 +1,81 @@
 import { motion } from "framer-motion";
 import { Quote } from "lucide-react";
-import Autoplay from "embla-carousel-autoplay";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
+
+const featured = {
+  name: "Elena Marchetti",
+  role: "VP Product, Northgrid",
+  quote:
+    "Northwave didn't just redesign our product — they reframed how we think about it. In four months we shipped a system our team is genuinely proud of, and our customers can feel the difference.",
+};
 
 const testimonials = [
-  { name: "Sarah Chudary", country: "USA", flag: "🇺🇸", quote: "Aqib did an AMAZING job on our app design. He took the time to understand the concept and ensure alignment — a joy to work with, polite, proactive and fluent in communication. Highly recommend." },
-  { name: "Mia Pansky", country: "USA", flag: "🇺🇸", quote: "Another great experience. Delivered a great product and had the patience to go through multiple revisions. Can't even describe how much you are appreciated. Nice job." },
-  { name: "Trayen Rumley", country: "USA", flag: "🇺🇸", quote: "I had the pleasure of working with Aqib on a landing page and web app, and the results were phenomenal. Exceptional eye for design, seamless user experience and outstanding communication." },
-  { name: "Klaus Kneupner", country: "Denmark", flag: "🇩🇰", quote: "Aqib did surprise me. Even when I told him it would be good, he chose on his behalf to improve further. That commitment to quality will get him far." },
-  { name: "Marine Hyjazi", country: "Ivory Coast", flag: "🇨🇮", quote: "Aqib was patient and very involved in our project. He was available and efficient, always taking my feedback as a chance to improve rather than as criticism." },
-  { name: "William Patrick", country: "Croatia", flag: "🇭🇷", quote: "It was wonderful working with him; he was great and exceptional. Will work again!" },
+  { name: "Daniel Okafor", role: "CEO, Drift", quote: "Sharpest design partner we've worked with. They moved faster than our internal team and raised the bar for everyone." },
+  { name: "Sara Hoffmann", role: "Head of Design, Lumen", quote: "Calm, considered, and ridiculously thorough. The system they built is still scaling cleanly two years later." },
+  { name: "Marcus Lee", role: "Founder, Orbit", quote: "We came in needing screens. We left with a product strategy and a roadmap. Worth every penny." },
+  { name: "Priya Raghavan", role: "CPO, Halcyon", quote: "Their motion craft alone is a competitive advantage. Our retention numbers moved within weeks of launch." },
+  { name: "Tomás Reyes", role: "VP Eng, Kairos", quote: "Rare studio that thinks about engineering tradeoffs while sketching. Handoff was the smoothest we've ever had." },
+  { name: "Ava Bennett", role: "Director, Vantage", quote: "They asked the hard questions early and saved us a quarter of wasted build. Could not recommend more." },
 ];
 
-const Testimonials = () => {
-  return (
-    <section id="testimonials" className="py-28 md:py-40 relative">
-      <div className="max-w-[1280px] mx-auto px-6 md:px-10">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.8 }}
-          className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 md:mb-20"
-        >
-          <div>
-            <span className="text-[11px] uppercase tracking-[0.3em] text-muted-foreground">Kind words</span>
-            <h2 className="editorial-heading text-5xl md:text-7xl mt-4 text-foreground">
-              From the <span className="italic font-light text-gradient-primary">people</span><br />
-              I've built with.
-            </h2>
-          </div>
-        </motion.div>
+const Initials = ({ name }: { name: string }) => (
+  <div className="w-11 h-11 rounded-full bg-gradient-to-br from-primary/40 to-primary/10 border border-primary/20 flex items-center justify-center font-display text-sm text-foreground">
+    {name.split(" ").map((n) => n[0]).join("")}
+  </div>
+);
 
-        <Carousel
-          opts={{ align: "start", loop: true }}
-          plugins={[Autoplay({ delay: 4500, stopOnInteraction: false })]}
-          className="w-full"
-        >
-          <CarouselContent className="-ml-6">
-            {testimonials.map((t, i) => (
-              <CarouselItem key={t.name} className="pl-6 md:basis-1/2 lg:basis-[42%]">
-                <motion.div
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.08, duration: 0.7 }}
-                  className="glass-card rounded-3xl p-8 md:p-10 h-full flex flex-col min-h-[340px] hover:border-primary/30 transition-colors duration-500"
-                >
-                  <Quote className="w-9 h-9 text-primary/60 mb-6" strokeWidth={1.5} />
-                  <blockquote className="flex-1 text-foreground/90 text-lg md:text-xl leading-relaxed font-light">
-                    {t.quote}
-                  </blockquote>
-                  <div className="mt-8 pt-6 border-t border-border/50 flex items-center gap-4">
-                    <div className="w-11 h-11 rounded-full bg-primary/15 flex items-center justify-center text-primary font-display font-semibold text-sm">
-                      {t.name.split(" ").map((n) => n[0]).join("")}
-                    </div>
-                    <div>
-                      <p className="font-display font-semibold text-foreground text-sm">{t.name}</p>
-                      <p className="text-xs text-muted-foreground mt-0.5">{t.flag} {t.country}</p>
-                    </div>
-                  </div>
-                </motion.div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <div className="flex justify-end gap-3 mt-10">
-            <CarouselPrevious className="relative static translate-y-0 glass-card hover:border-primary/30 text-foreground border-0" />
-            <CarouselNext className="relative static translate-y-0 glass-card hover:border-primary/30 text-foreground border-0" />
+const Testimonials = () => (
+  <section id="testimonials" className="py-28 md:py-40 relative">
+    <div className="max-w-[1280px] mx-auto px-6 md:px-10">
+      <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.7 }}
+        className="max-w-2xl mb-16">
+        <span className="mono text-[11px] uppercase tracking-[0.28em] text-muted-foreground">Kind words</span>
+        <h2 className="editorial-heading text-foreground text-5xl md:text-7xl mt-4">
+          What partners <span className="italic text-gradient-primary">say</span>
+        </h2>
+      </motion.div>
+
+      <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.8 }}
+        className="relative rounded-[40px] glass-card p-10 md:p-16 mb-10 overflow-hidden">
+        <div aria-hidden className="absolute -top-20 -right-20 w-[400px] h-[400px] rounded-full blur-[100px] opacity-40"
+          style={{ background: "radial-gradient(circle, hsl(255 92% 60%/0.6), transparent 70%)" }} />
+        <Quote className="w-12 h-12 text-primary/60 mb-8" strokeWidth={1.2} />
+        <blockquote className="editorial-heading text-foreground text-3xl md:text-5xl leading-[1.15] max-w-4xl">
+          "{featured.quote}"
+        </blockquote>
+        <div className="mt-10 flex items-center gap-4">
+          <Initials name={featured.name} />
+          <div>
+            <p className="font-display text-lg text-foreground">{featured.name}</p>
+            <p className="text-sm text-muted-foreground">{featured.role}</p>
           </div>
-        </Carousel>
+        </div>
+      </motion.div>
+
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {testimonials.map((t, i) => (
+          <motion.div key={t.name}
+            initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.7, delay: (i % 3) * 0.08 }}
+            whileHover={{ y: -6, rotate: -0.4, scale: 1.01 }}
+            className="rounded-3xl bg-card/60 border border-border p-7 hover:border-primary/30 hover:shadow-[0_20px_60px_-20px_hsl(255_92%_60%/0.25)] transition-all duration-500"
+          >
+            <Quote className="w-6 h-6 text-primary/50 mb-4" strokeWidth={1.5} />
+            <p className="text-foreground/90 text-[15px] leading-relaxed mb-6">"{t.quote}"</p>
+            <div className="flex items-center gap-3 pt-5 border-t border-border/50">
+              <Initials name={t.name} />
+              <div>
+                <p className="font-display text-foreground text-sm">{t.name}</p>
+                <p className="text-xs text-muted-foreground">{t.role}</p>
+              </div>
+            </div>
+          </motion.div>
+        ))}
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
 
 export default Testimonials;

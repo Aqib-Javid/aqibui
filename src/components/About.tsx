@@ -2,10 +2,10 @@ import { motion, useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
 const stats = [
-  { value: 5, suffix: "+", label: "Years of experience" },
-  { value: 200, suffix: "+", label: "Projects delivered" },
-  { value: 100, suffix: "+", label: "Happy clients" },
-  { value: 10, suffix: "+", label: "Industries served" },
+  { value: 240, suffix: "+", label: "Projects delivered" },
+  { value: 38, suffix: "", label: "Countries served" },
+  { value: 12, suffix: "+", label: "Years experience" },
+  { value: 18, suffix: "M+", label: "Users impacted" },
 ];
 
 const CountUp = ({ end, suffix }: { end: number; suffix: string }) => {
@@ -29,67 +29,44 @@ const CountUp = ({ end, suffix }: { end: number; suffix: string }) => {
   return <span ref={ref}>{n}{suffix}</span>;
 };
 
-const About = () => {
-  return (
-    <section id="about" className="py-28 md:py-40 relative">
-      <div className="max-w-[1280px] mx-auto px-6 md:px-10">
-        <div className="grid md:grid-cols-12 gap-10 md:gap-16">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.8 }}
-            className="md:col-span-5"
-          >
-            <span className="text-[11px] uppercase tracking-[0.3em] text-muted-foreground">About</span>
-            <h2 className="editorial-heading text-5xl md:text-7xl mt-4 text-foreground">
-              A designer<br />
-              <span className="italic font-light text-gradient-primary">with intent.</span>
-            </h2>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.8, delay: 0.15 }}
-            className="md:col-span-7 space-y-6 text-[17px] md:text-lg leading-[1.75] text-muted-foreground"
-          >
-            <p>
-              I've grown from a visual designer to a senior product designer, navigating diverse roles
-              and disciplines. My journey spans <span className="text-foreground">fintech, SaaS, mobility,
-              edtech and AI</span> — each chapter shaping how I see design as a tool for impact.
-            </p>
-            <p>
-              Today, I approach challenges with a holistic lens — solving the bigger picture by obsessing
-              over the tiny details. From research to pixel-perfect execution, I specialize in building
-              <span className="text-foreground"> scalable design systems</span> and crafting user-centered
-              digital solutions.
-            </p>
-          </motion.div>
+const About = () => (
+  <section id="about" className="py-28 md:py-40 relative">
+    <div className="max-w-[1280px] mx-auto px-6 md:px-10 grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+      <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.8 }}>
+        <span className="mono text-[11px] uppercase tracking-[0.28em] text-muted-foreground">About the studio</span>
+        <h2 className="editorial-heading text-foreground text-5xl md:text-7xl mt-4 leading-[0.95]">
+          We're a small studio<br />
+          <span className="italic text-gradient-primary">obsessed</span> with craft.
+        </h2>
+        <div className="mt-10 space-y-5 text-muted-foreground text-lg leading-relaxed max-w-xl">
+          <p>
+            Northwave is an independent product design studio working with founders and product
+            teams who care as much about the details as we do. We believe great design is a
+            commercial advantage — not a department.
+          </p>
+          <p className="text-foreground/85">
+            Our practice spans strategy, research, interface design, motion and design systems.
+            We embed deeply, ship quickly, and leave you with a product your team can keep
+            evolving long after we hand over the keys.
+          </p>
         </div>
+      </motion.div>
 
-        {/* Stats */}
-        <div className="mt-20 md:mt-28 grid grid-cols-2 md:grid-cols-4 border-t border-border/60">
-          {stats.map((s, i) => (
-            <motion.div
-              key={s.label}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: i * 0.1 }}
-              className={`py-10 md:py-12 px-2 md:px-6 ${i < stats.length - 1 ? "md:border-r" : ""} border-border/60 ${i % 2 === 0 ? "border-r md:border-r" : ""}`}
-            >
-              <div className="editorial-heading text-5xl md:text-6xl text-foreground mb-3">
-                <CountUp end={s.value} suffix={s.suffix} />
-              </div>
-              <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground">{s.label}</div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
+      <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.8, delay: 0.1 }}
+        className="grid grid-cols-2 gap-px bg-border/60 rounded-3xl overflow-hidden border border-border">
+        {stats.map((s) => (
+          <div key={s.label} className="bg-card/60 p-8 md:p-10">
+            <div className="editorial-heading text-5xl md:text-6xl text-foreground">
+              <CountUp end={s.value} suffix={s.suffix} />
+            </div>
+            <div className="mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground mt-3">{s.label}</div>
+          </div>
+        ))}
+      </motion.div>
+    </div>
+  </section>
+);
 
 export default About;

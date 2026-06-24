@@ -1,24 +1,34 @@
-import { motion, type Variants } from "framer-motion";
-import { ArrowDown, ArrowUpRight } from "lucide-react";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { ArrowUpRight, Play } from "lucide-react";
+import { useEffect } from "react";
+import { Phone, Dashboard, Tablet, PhoneUI, DashUI } from "./DeviceMockup";
 
-const services = ["UX Design", "Product Design", "Design Systems", "Mobile Apps", "SaaS", "Webflow", "Framer"];
-
-const reveal: Variants = {
-  hidden: { opacity: 0, y: 60 },
-  show: (i: number) => ({
-    opacity: 1, y: 0,
-    transition: { duration: 0.95, delay: 0.1 + i * 0.08, ease: [0.22, 1, 0.36, 1] as const },
-  }),
-};
+const headline1 = ["Design", "that", "moves"];
+const headline2 = ["products", "forward."];
 
 const Hero = () => {
+  const mx = useMotionValue(0);
+  const my = useMotionValue(0);
+  const sx = useSpring(mx, { stiffness: 60, damping: 20 });
+  const sy = useSpring(my, { stiffness: 60, damping: 20 });
+  const x1 = useTransform(sx, (v) => v * 20);
+  const y1 = useTransform(sy, (v) => v * 20);
+  const x2 = useTransform(sx, (v) => v * -14);
+  const y2 = useTransform(sy, (v) => v * -14);
+  const x3 = useTransform(sx, (v) => v * 10);
+  const y3 = useTransform(sy, (v) => v * 10);
+
+  useEffect(() => {
+    const onMove = (e: MouseEvent) => {
+      mx.set(e.clientX / window.innerWidth - 0.5);
+      my.set(e.clientY / window.innerHeight - 0.5);
+    };
+    window.addEventListener("mousemove", onMove);
+    return () => window.removeEventListener("mousemove", onMove);
+  }, [mx, my]);
+
   return (
-    <motion.section
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: false, margin: "-15%" }}
-      className="relative min-h-screen flex flex-col justify-end overflow-hidden pt-32 pb-16"
-    >
+    <section className="relative min-h-screen flex items-center overflow-hidden pt-32 pb-20">
       <div aria-hidden className="absolute inset-0 pointer-events-none">
         <div className="absolute top-[10%] left-[5%] w-[520px] h-[520px] rounded-full opacity-40 blur-[120px] animate-blob"
              style={{ background: "radial-gradient(circle, hsl(255 92% 60% / 0.55), transparent 70%)" }} />
@@ -28,68 +38,88 @@ const Hero = () => {
              style={{ backgroundImage: "linear-gradient(hsl(var(--foreground)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)", backgroundSize: "80px 80px" }} />
       </div>
 
-      <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-10 w-full">
-        <motion.div custom={0} initial="hidden" animate="show" variants={reveal}
-          className="flex items-center gap-3 mb-10">
-          <span className="h-px w-12 bg-foreground/30" />
-          <span className="mono text-[11px] uppercase tracking-[0.28em] text-muted-foreground">
-            Aqib Javid — Senior Product Designer · Available
-          </span>
-        </motion.div>
+      <div className="relative z-10 max-w-[1280px] mx-auto px-6 md:px-10 w-full grid lg:grid-cols-[1.05fr_1fr] gap-16 items-center">
+        {/* LEFT */}
+        <div>
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-border bg-card/40 backdrop-blur-sm mb-8">
+            <span className="relative flex w-2 h-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-60" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
+            </span>
+            <span className="mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground">Booking Q2 · 2026</span>
+          </motion.div>
 
-        <h1 className="editorial-heading text-foreground text-[16vw] md:text-[13vw] lg:text-[11.5rem] xl:text-[14rem] leading-[0.9]">
-          <motion.span custom={1} initial="hidden" animate="show" variants={reveal} className="block">
-            Designing
-          </motion.span>
-          <motion.span custom={2} initial="hidden" animate="show" variants={reveal} className="block">
-            <span className="italic text-gradient-primary pr-4">human</span>
-            <span className="text-foreground/30">·</span>
-          </motion.span>
-          <motion.span custom={3} initial="hidden" animate="show" variants={reveal} className="block">
-            centered products.
-          </motion.span>
-        </h1>
+          <h1 className="editorial-heading text-foreground text-[14vw] md:text-[8.5vw] lg:text-[6.2rem] xl:text-[7.2rem] leading-[0.92]">
+            <span className="block">
+              {headline1.map((w, i) => (
+                <motion.span key={i} initial={{ opacity: 0, y: 60 }} animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.15 + i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+                  className="inline-block mr-[0.25em]">{w}</motion.span>
+              ))}
+            </span>
+            <span className="block">
+              {headline2.map((w, i) => (
+                <motion.span key={i} initial={{ opacity: 0, y: 60 }} animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.5 + i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+                  className={`inline-block mr-[0.25em] ${i === 0 ? "italic text-gradient-primary" : ""}`}>{w}</motion.span>
+              ))}
+            </span>
+          </h1>
 
-        <motion.div custom={4} initial="hidden" animate="show" variants={reveal}
-          className="mt-12 md:mt-20 grid md:grid-cols-[1.2fr_1fr] gap-10 items-end">
-          <p className="text-muted-foreground text-lg md:text-xl leading-relaxed max-w-xl font-light">
-            A multi-disciplinary product designer with 5+ years crafting scalable systems,
-            intuitive interfaces and human-centered products across fintech, SaaS and mobility.
-          </p>
-          <div className="flex flex-wrap gap-2 md:justify-end">
-            {services.map((b, i) => (
-              <motion.span key={b}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.9 + i * 0.06, duration: 0.5 }}
-                whileHover={{ y: -3, borderColor: "hsl(var(--primary))" }}
-                className="mono px-3.5 py-1.5 rounded-full border border-border text-[11px] uppercase tracking-[0.15em] text-foreground/70 hover:text-foreground transition-colors">
-                {b}
-              </motion.span>
-            ))}
-          </div>
-        </motion.div>
+          <motion.p initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.9 }}
+            className="mt-10 text-muted-foreground text-lg leading-relaxed max-w-xl font-light">
+            We're an independent product studio crafting digital experiences for ambitious
+            startups and enterprises. Strategy, design and motion — engineered to ship.
+          </motion.p>
 
-        <motion.div custom={5} initial="hidden" animate="show" variants={reveal}
-          className="mt-14 md:mt-20 flex flex-wrap items-center gap-4">
-          <a href="#work" className="group inline-flex items-center gap-3 px-6 py-3.5 rounded-full bg-primary text-primary-foreground hover:shadow-[var(--shadow-elegant)] transition-all duration-500">
-            <span className="text-sm font-medium">View selected work</span>
-            <ArrowUpRight className="w-4 h-4 group-hover:rotate-45 transition-transform" />
-          </a>
-          <a href="mailto:contact@aqibjavid.com" className="inline-flex items-center gap-3 px-6 py-3.5 rounded-full border border-border hover:border-primary/50 transition-colors text-sm">
-            Let's talk
-          </a>
-        </motion.div>
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1.05 }}
+            className="mt-10 flex flex-wrap items-center gap-4">
+            <a href="#contact" className="group inline-flex items-center gap-3 px-6 py-3.5 rounded-full bg-primary text-primary-foreground hover:scale-[1.03] hover:shadow-[var(--shadow-elegant)] transition-all duration-500">
+              <span className="text-sm font-medium">Start a project</span>
+              <ArrowUpRight className="w-4 h-4 group-hover:rotate-45 transition-transform" />
+            </a>
+            <a href="#work" className="group inline-flex items-center gap-3 px-6 py-3.5 rounded-full border border-border hover:border-primary/50 hover:scale-[1.03] transition-all text-sm">
+              <Play className="w-3.5 h-3.5 fill-current" />
+              See our work
+            </a>
+          </motion.div>
+
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.4, duration: 0.8 }}
+            className="mt-14 flex items-center gap-8">
+            <div>
+              <div className="editorial-heading text-3xl text-foreground">12+</div>
+              <div className="mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground mt-1">Years</div>
+            </div>
+            <div className="w-px h-10 bg-border" />
+            <div>
+              <div className="editorial-heading text-3xl text-foreground">240+</div>
+              <div className="mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground mt-1">Shipped</div>
+            </div>
+            <div className="w-px h-10 bg-border" />
+            <div>
+              <div className="editorial-heading text-3xl text-foreground">38</div>
+              <div className="mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground mt-1">Countries</div>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* RIGHT — floating mockups */}
+        <div className="relative h-[560px] hidden lg:block">
+          <motion.div style={{ x: x1, y: y1 }} className="absolute top-0 right-8">
+            <Tablet><DashUI /></Tablet>
+          </motion.div>
+          <motion.div style={{ x: x2, y: y2 }} className="absolute -bottom-4 left-0">
+            <Phone><PhoneUI /></Phone>
+          </motion.div>
+          <motion.div style={{ x: x3, y: y3 }} className="absolute bottom-16 right-0 w-[300px]">
+            <Dashboard><DashUI /></Dashboard>
+          </motion.div>
+        </div>
       </div>
-
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.4, duration: 1 }}
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-muted-foreground">
-        <span className="mono text-[10px] uppercase tracking-[0.3em]">Scroll</span>
-        <motion.div animate={{ y: [0, 6, 0] }} transition={{ duration: 1.8, repeat: Infinity }}>
-          <ArrowDown className="w-4 h-4" />
-        </motion.div>
-      </motion.div>
-    </motion.section>
+    </section>
   );
 };
 

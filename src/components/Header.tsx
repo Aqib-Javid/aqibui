@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ArrowUpRight } from "lucide-react";
 
 const navItems = [
+  { label: "Services", id: "services" },
   { label: "Work", id: "work" },
+  { label: "Process", id: "process" },
   { label: "About", id: "about" },
-  { label: "Experience", id: "experience" },
-  { label: "Testimonials", id: "testimonials" },
-  { label: "Contact", id: "contact" },
+  { label: "Insights", id: "insights" },
 ];
 
 const Header = () => {
@@ -45,16 +45,16 @@ const Header = () => {
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             className="flex items-center gap-2 group"
           >
-            <span className="w-2 h-2 rounded-full bg-primary group-hover:scale-125 transition-transform" />
-            <span className="font-display font-semibold text-foreground text-sm tracking-tight">Aqib Javid</span>
+            <span className="w-2.5 h-2.5 rounded-full bg-gradient-to-br from-primary to-primary/40 group-hover:scale-125 transition-transform" />
+            <span className="font-display text-foreground text-lg tracking-tight">Northwave<span className="text-primary">.</span></span>
           </button>
 
-          <ul className="hidden md:flex items-center gap-9">
+          <ul className="hidden md:flex items-center gap-9 absolute left-1/2 -translate-x-1/2">
             {navItems.map((item) => (
               <li key={item.id}>
                 <button
                   onClick={() => scrollToSection(item.id)}
-                  className="link-underline text-[13px] uppercase tracking-[0.18em] text-muted-foreground hover:text-foreground transition-colors duration-300"
+                  className="link-underline text-[13px] tracking-tight text-muted-foreground hover:text-foreground transition-colors duration-300"
                 >
                   {item.label}
                 </button>
@@ -62,16 +62,15 @@ const Header = () => {
             ))}
           </ul>
 
-          <a
-            href="mailto:contact@aqibjavid.com"
-            className="hidden md:inline-flex items-center gap-2 text-[13px] uppercase tracking-[0.18em] text-foreground hover:text-primary transition-colors"
+          <button
+            onClick={() => scrollToSection("contact")}
+            className="hidden md:inline-flex items-center gap-2 text-[13px] font-medium pl-4 pr-1.5 py-1.5 rounded-full bg-foreground text-background hover:scale-[1.03] transition-transform"
           >
-            <span className="relative flex w-2 h-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-60" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
+            Start Project
+            <span className="inline-flex w-7 h-7 rounded-full bg-primary text-primary-foreground items-center justify-center">
+              <ArrowUpRight className="w-3.5 h-3.5" />
             </span>
-            Available
-          </a>
+          </button>
 
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -94,14 +93,16 @@ const Header = () => {
               <ul className="flex flex-col gap-4">
                 {navItems.map((item) => (
                   <li key={item.id}>
-                    <button
-                      onClick={() => scrollToSection(item.id)}
-                      className="text-base font-display text-foreground"
-                    >
+                    <button onClick={() => scrollToSection(item.id)} className="text-base font-display text-foreground">
                       {item.label}
                     </button>
                   </li>
                 ))}
+                <li>
+                  <button onClick={() => scrollToSection("contact")} className="mt-2 inline-flex items-center gap-2 text-sm px-4 py-2 rounded-full bg-primary text-primary-foreground">
+                    Start Project <ArrowUpRight className="w-4 h-4" />
+                  </button>
+                </li>
               </ul>
             </motion.div>
           )}
