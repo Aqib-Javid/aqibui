@@ -3,12 +3,12 @@ import { Plus } from "lucide-react";
 import { useState } from "react";
 
 const faqs = [
-  { q: "How do engagements typically start?", a: "We begin with a paid 2-week discovery sprint. You walk away with a problem frame, opportunity map and a recommendation — whether we continue together or not." },
-  { q: "What is the typical project length?", a: "Most engagements run 8 to 16 weeks. We also offer ongoing design partnerships billed monthly for teams that need continuous design capacity." },
-  { q: "Do you work with engineering teams?", a: "Yes — closely. We design with implementation in mind, attend standups when useful, and partner directly with your engineers through ship." },
-  { q: "What's the investment range?", a: "Project engagements typically start at $40k. Retainers start at $18k per month. We're happy to share specifics on a call once we understand scope." },
-  { q: "Where is the team based?", a: "We're a distributed team across Europe and North America, with overlapping hours that cover most global time zones." },
-  { q: "Do you take equity?", a: "Selectively. For early-stage founders we believe in, we can structure a portion of fees as equity. Ask us about it." },
+  { q: "How do engagements typically start?", a: "We begin with a paid 1-week discovery sprint. You walk away with a problem frame, opportunity map and a recommendation — whether we continue together or not." },
+  { q: "What is the typical project length?", a: "Most engagements run 6 to 12 weeks. I also offer ongoing design partnerships billed monthly for teams that need continuous design capacity." },
+  { q: "Do you work with engineering teams?", a: "Yes — closely. I design with implementation in mind, attend standups when useful, and partner directly with your engineers through ship." },
+  { q: "What's the investment range?", a: "Project engagements typically start at $8k. Retainers start at $5k per month. Happy to share specifics on a call once we understand scope." },
+  { q: "Where are you based?", a: "I work remotely with teams across Europe, North America and the Middle East — overlapping hours that cover most global time zones." },
+  { q: "Do you take equity?", a: "Selectively. For early-stage founders I believe in, I can structure a portion of fees as equity. Ask me about it." },
 ];
 
 const Item = ({ q, a, open, onClick }: { q: string; a: string; open: boolean; onClick: () => void }) => (
@@ -22,12 +22,8 @@ const Item = ({ q, a, open, onClick }: { q: string; a: string; open: boolean; on
     </button>
     <AnimatePresence initial={false}>
       {open && (
-        <motion.div
-          initial={{ height: 0, opacity: 0 }}
-          animate={{ height: "auto", opacity: 1 }}
-          exit={{ height: 0, opacity: 0 }}
-          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-          className="overflow-hidden">
+        <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }}
+          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }} className="overflow-hidden">
           <p className="pb-7 pr-16 text-muted-foreground text-base leading-relaxed">{a}</p>
         </motion.div>
       )}
@@ -47,7 +43,7 @@ const FAQ = () => {
             Questions,<br /><span className="italic text-gradient-primary">answered.</span>
           </h2>
           <p className="text-muted-foreground mt-6 max-w-sm leading-relaxed">
-            Don't see what you're looking for? Drop us a note — we usually reply within a working day.
+            Don't see what you're looking for? Drop me a note — I usually reply within a working day.
           </p>
         </motion.div>
         <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }}

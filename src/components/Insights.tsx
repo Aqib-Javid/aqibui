@@ -4,12 +4,12 @@ import { ArrowUpRight } from "lucide-react";
 const featured = {
   category: "Field notes",
   read: "8 min read",
-  title: "Designing for trust in financial products",
-  desc: "How we re-architected Drift's onboarding around regulatory clarity, micro-affordances and progressive disclosure.",
+  title: "Designing for trust in product onboarding",
+  desc: "How I re-architect onboarding flows around regulatory clarity, micro-affordances and progressive disclosure.",
 };
 
 const articles = [
-  { category: "Process", read: "5 min", title: "The shortest path from research to ship", desc: "A pragmatic toolkit for studios working with high-velocity product teams." },
+  { category: "Process", read: "5 min", title: "The shortest path from research to ship", desc: "A pragmatic toolkit for designers working with high-velocity product teams." },
   { category: "Systems", read: "7 min", title: "Tokens are a product, not a deliverable", desc: "Why design tokens deserve the same lifecycle treatment as any feature." },
   { category: "Motion", read: "4 min", title: "Motion as hierarchy", desc: "Using easing curves and layering to direct attention without UI clutter." },
 ];
@@ -35,8 +35,8 @@ const Insights = () => (
         initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.8 }}
         className="group grid lg:grid-cols-2 gap-8 lg:gap-14 mb-16 items-center">
-        <div className="aspect-[4/3] rounded-[32px] overflow-hidden bg-gradient-to-br from-violet-500/30 to-fuchsia-500/10 border border-white/10 relative">
-          <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: "linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)", backgroundSize: "30px 30px" }} />
+        <div className="aspect-[4/3] rounded-[32px] overflow-hidden bg-gradient-to-br from-violet-300/30 to-fuchsia-200/10 border border-border relative">
+          <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: "linear-gradient(hsl(var(--foreground)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)", backgroundSize: "30px 30px" }} />
           <motion.div className="absolute inset-0 flex items-center justify-center transition-transform duration-[1200ms] group-hover:scale-105">
             <div className="font-display italic text-7xl text-foreground/40">Trust.</div>
           </motion.div>
@@ -60,7 +60,7 @@ const Insights = () => (
             transition={{ duration: 0.7, delay: i * 0.08 }}
             whileHover={{ y: -6 }}
             className="group rounded-3xl bg-card/60 border border-border p-6 hover:border-primary/40 transition-colors duration-500">
-            <div className="aspect-[5/3] rounded-2xl mb-5 overflow-hidden bg-gradient-to-br from-sky-500/20 to-emerald-500/10 border border-white/5 flex items-center justify-center">
+            <div className="aspect-[5/3] rounded-2xl mb-5 overflow-hidden bg-gradient-to-br from-sky-300/20 to-emerald-200/10 border border-border flex items-center justify-center">
               <span className="font-display italic text-4xl text-foreground/30 group-hover:scale-110 transition-transform duration-[1000ms]">{a.category}.</span>
             </div>
             <div className="flex items-center gap-3 mb-3">

@@ -1,36 +1,36 @@
 import { motion } from "framer-motion";
 
 const columns = [
-  { title: "Studio", links: ["About", "Process", "Journal", "Careers"] },
+  { title: "Navigate", links: ["About", "Services", "Work", "Process", "Insights"] },
   { title: "Services", links: ["Product Design", "UX Research", "Design Systems", "Mobile Apps"] },
-  { title: "Connect", links: ["Twitter / X", "LinkedIn", "Dribbble", "Instagram"] },
+  { title: "Connect", links: ["Twitter / X", "LinkedIn", "Dribbble", "Behance"] },
 ];
 
 const Footer = () => {
   const year = new Date().getFullYear();
   return (
-    <footer className="relative pt-28 pb-10 mt-10 bg-[hsl(0_0%_3%)] border-t border-border/60 overflow-hidden">
-      <div aria-hidden className="absolute inset-x-0 -top-40 h-[400px] opacity-50 blur-[120px]"
-        style={{ background: "radial-gradient(ellipse at center, hsl(255 92% 50% / 0.4), transparent 60%)" }} />
+    <footer className="relative pt-28 pb-10 mt-10 bg-[hsl(222_20%_10%)] text-[hsl(0_0%_98%)] border-t border-border/60 overflow-hidden">
+      <div aria-hidden className="absolute inset-x-0 -top-40 h-[400px] opacity-60 blur-[120px]"
+        style={{ background: "radial-gradient(ellipse at center, hsl(255 92% 60% / 0.45), transparent 60%)" }} />
 
       <div className="relative max-w-[1280px] mx-auto px-6 md:px-10">
         <div className="grid lg:grid-cols-[1.4fr_1fr_1fr_1fr] gap-12 mb-20">
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}>
-            <div className="flex items-center gap-2 mb-5">
-              <span className="w-2.5 h-2.5 rounded-full bg-gradient-to-br from-primary to-primary/40" />
-              <span className="font-display text-xl text-foreground">Northwave<span className="text-primary">.</span></span>
+            <div className="flex items-center gap-2.5 mb-5">
+              <span className="w-7 h-7 rounded-full bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center font-display text-background text-sm">A</span>
+              <span className="font-display text-xl">Aqib Javid</span>
             </div>
-            <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">
-              An independent product design studio crafting digital experiences for ambitious teams.
+            <p className="text-white/60 text-sm leading-relaxed max-w-xs">
+              An independent Product Designer crafting digital experiences for ambitious teams worldwide.
             </p>
           </motion.div>
           {columns.map((c) => (
             <div key={c.title}>
-              <p className="mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground mb-5">{c.title}</p>
+              <p className="mono text-[10px] uppercase tracking-[0.22em] text-white/50 mb-5">{c.title}</p>
               <ul className="space-y-3">
                 {c.links.map((l) => (
                   <li key={l}>
-                    <a href="#" className="text-foreground/80 hover:text-foreground link-underline text-sm">{l}</a>
+                    <a href="#" className="text-white/80 hover:text-white link-underline text-sm">{l}</a>
                   </li>
                 ))}
               </ul>
@@ -39,14 +39,14 @@ const Footer = () => {
         </div>
 
         <div className="relative -mb-6 overflow-hidden">
-          <h2 aria-hidden className="editorial-heading text-foreground/[0.06] text-[22vw] leading-[0.85] whitespace-nowrap text-center select-none">
-            Northwave.
+          <h2 aria-hidden className="editorial-heading text-white/[0.06] text-[22vw] leading-[0.85] whitespace-nowrap text-center select-none">
+            Aqib Javid.
           </h2>
         </div>
 
-        <div className="relative flex flex-col md:flex-row items-center justify-between gap-4 pt-8 border-t border-border/40">
-          <p className="mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">© {year} Northwave Studio · All rights reserved</p>
-          <p className="mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">Crafted with intent · Lisbon</p>
+        <div className="relative flex flex-col md:flex-row items-center justify-between gap-4 pt-8 border-t border-white/10">
+          <p className="mono text-[10px] uppercase tracking-[0.25em] text-white/50">© {year} Aqib Javid · All rights reserved</p>
+          <p className="mono text-[10px] uppercase tracking-[0.25em] text-white/50">Designed &amp; built with intent</p>
         </div>
       </div>
     </footer>
