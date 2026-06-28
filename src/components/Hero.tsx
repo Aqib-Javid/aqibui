@@ -4,53 +4,42 @@ import { ArrowUpRight, Phone, Quote } from "lucide-react";
 const headline = ["A", "Product", "Designer", "who", "turns"];
 const headline2 = ["users", "into", "loyal", "advocates."];
 
-const FloatingQuote = ({
-  className,
+const SmallQuote = ({
   quote,
   name,
   delay = 0,
-  rotate = -4,
-}: { className: string; quote: string; name: string; delay?: number; rotate?: number }) => (
+  rotate = -3,
+}: { quote: string; name: string; delay?: number; rotate?: number }) => (
   <motion.div
-    initial={{ opacity: 0, y: 30, rotate: 0 }}
-    animate={{ opacity: 1, y: 0, rotate }}
-    transition={{ duration: 1, delay, ease: [0.22, 1, 0.36, 1] }}
-    whileHover={{ y: -6, rotate: rotate * 0.4 }}
-    className={`hidden lg:block absolute z-10 w-[260px] glass-card rounded-2xl p-6 shadow-[0_30px_60px_-25px_hsl(220_30%_40%/0.18)] ${className}`}
+    initial={{ opacity: 0, y: 24, rotate: 0 }}
+    whileInView={{ opacity: 1, y: 0, rotate }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.9, delay, ease: [0.22, 1, 0.36, 1] }}
+    whileHover={{ y: -4, rotate: rotate * 0.4 }}
+    className="w-[260px] glass-card rounded-2xl p-5 text-left shadow-[0_20px_50px_-25px_hsl(220_30%_40%/0.18)]"
   >
-    <Quote className="w-5 h-5 text-primary/70 mb-3" strokeWidth={1.4} />
-    <p className="text-[13px] text-foreground/85 leading-relaxed mb-4">{quote}</p>
-    <p className="mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">— {name}</p>
+    <Quote className="w-4 h-4 text-primary/70 mb-2" strokeWidth={1.4} />
+    <p className="text-[12px] text-foreground/85 leading-relaxed mb-3">{quote}</p>
+    <p className="mono text-[9px] uppercase tracking-[0.22em] text-muted-foreground">— {name}</p>
   </motion.div>
 );
 
 const Hero = () => (
-  <section className="relative min-h-screen flex items-center overflow-hidden pt-36 pb-24">
+  <section className="relative min-h-[92vh] flex items-center overflow-hidden pt-36 pb-16">
     <div aria-hidden className="absolute inset-0 pointer-events-none">
+      <div className="absolute inset-0 opacity-[0.08]"
+        style={{ backgroundImage: "radial-gradient(hsl(var(--foreground)) 1px, transparent 1px)", backgroundSize: "22px 22px" }} />
       <div className="absolute inset-0 opacity-[0.04]"
-        style={{ backgroundImage: "radial-gradient(hsl(var(--foreground)) 1px, transparent 1px)", backgroundSize: "26px 26px" }} />
-      <div className="absolute top-[6%] left-[10%] w-[480px] h-[480px] rounded-full opacity-30 blur-[120px] animate-blob"
-        style={{ background: "radial-gradient(circle, hsl(255 92% 70% / 0.45), transparent 70%)" }} />
-      <div className="absolute bottom-[5%] right-[8%] w-[520px] h-[520px] rounded-full opacity-25 blur-[140px] animate-blob"
-        style={{ background: "radial-gradient(circle, hsl(280 80% 75% / 0.45), transparent 70%)", animationDelay: "4s" }} />
+        style={{ backgroundImage: "linear-gradient(hsl(var(--foreground)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)", backgroundSize: "80px 80px" }} />
+      <div className="absolute inset-0"
+        style={{ background: "radial-gradient(ellipse 60% 60% at 50% 40%, transparent, hsl(var(--background)) 75%)" }} />
+      <div className="absolute top-[6%] left-[8%] w-[440px] h-[440px] rounded-full opacity-25 blur-[120px]"
+        style={{ background: "radial-gradient(circle, hsl(220 95% 65% / 0.45), transparent 70%)" }} />
+      <div className="absolute bottom-[5%] right-[8%] w-[500px] h-[500px] rounded-full opacity-20 blur-[140px]"
+        style={{ background: "radial-gradient(circle, hsl(200 90% 65% / 0.45), transparent 70%)" }} />
     </div>
 
     <div className="relative z-10 w-full max-w-[1280px] mx-auto px-6 md:px-10">
-      <FloatingQuote
-        className="top-[18%] left-0"
-        quote="Aqib delivered scalable design for our app and our team noticed the lift immediately — onboarding completion jumped almost overnight."
-        name="Chirag Kashyap"
-        delay={0.6}
-        rotate={-5}
-      />
-      <FloatingQuote
-        className="top-[22%] right-0"
-        quote="We approached Aqib because he is one of the sharpest product minds we've worked with. Easily 10/10."
-        name="Shruthi Shukla"
-        delay={0.8}
-        rotate={5}
-      />
-
       <div className="max-w-4xl mx-auto text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}
@@ -88,7 +77,7 @@ const Hero = () => (
 
         <motion.p
           initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 1.05 }}
-          className="mt-10 text-muted-foreground text-lg md:text-xl leading-relaxed max-w-2xl mx-auto"
+          className="mt-8 text-muted-foreground text-base md:text-lg leading-relaxed max-w-2xl mx-auto"
         >
           Hi, I'm <span className="text-foreground font-medium">Aqib Javid</span> — a multi-disciplinary
           Product Designer crafting digital experiences that fuel user growth, customer loyalty and
@@ -97,7 +86,7 @@ const Hero = () => (
 
         <motion.div
           initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 1.2 }}
-          className="mt-10 flex flex-wrap items-center justify-center gap-4"
+          className="mt-8 flex flex-wrap items-center justify-center gap-4"
         >
           <a href="#contact" className="group inline-flex items-center gap-3 pl-5 pr-2 py-2 rounded-full bg-foreground text-background hover:scale-[1.03] transition-all duration-500">
             <span className="inline-flex w-7 h-7 rounded-full bg-background/15 items-center justify-center">
@@ -112,6 +101,21 @@ const Hero = () => (
             </span>
           </a>
         </motion.div>
+
+        <div className="mt-14 flex flex-wrap items-center justify-center gap-5 md:gap-8">
+          <SmallQuote
+            quote="Aqib delivered scalable design across our app — onboarding completion lifted almost overnight."
+            name="Chirag Kashyap"
+            delay={1.4}
+            rotate={-3}
+          />
+          <SmallQuote
+            quote="One of the sharpest product minds we've worked with. Easily 10/10."
+            name="Shruthi Shukla, Sanialarm"
+            delay={1.55}
+            rotate={3}
+          />
+        </div>
       </div>
     </div>
   </section>
