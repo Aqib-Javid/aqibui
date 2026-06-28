@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 
-const row1 = ["Lumen", "Vantage", "Northstar", "Halcyon", "Orbital", "Quanta"];
-const row2 = ["Aperture", "Meridian", "Veridian", "Kairos", "Drift", "Northgrid"];
-const grid = ["Lumen", "Vantage", "Northstar", "Halcyon", "Orbital", "Quanta", "Aperture", "Meridian"];
+const row1 = ["NexifyVPN", "Sanialarm", "HairstyleDiscovery", "Quick Swapper", "MATE", "Rapidos"];
+const row2 = ["Appick", "Algorithm", "ItecExperts", "NexifyVPN", "Sanialarm", "MATE"];
+const grid = ["NexifyVPN", "Sanialarm", "HairstyleDiscovery", "Quick Swapper", "MATE", "Rapidos", "Appick", "Algorithm"];
 
 const Marquee = ({ items, reverse = false }: { items: string[]; reverse?: boolean }) => (
   <div className="marquee-mask overflow-hidden py-3">
@@ -23,11 +23,11 @@ const LogosShowcase = () => (
         <div>
           <span className="mono text-[11px] uppercase tracking-[0.28em] text-muted-foreground">Clients</span>
           <h2 className="editorial-heading text-foreground text-4xl md:text-6xl mt-4">
-            Trusted across <span className="italic text-gradient-primary">38 countries</span>
+            Teams I've <span className="italic text-gradient-primary">shipped with</span>
           </h2>
         </div>
         <p className="text-muted-foreground max-w-sm text-[15px] leading-relaxed">
-          From early-stage founders to publicly listed scale-ups — a partial list of teams we've shipped with.
+          A selection of the founders, startups and product teams I've partnered with over the last eight years.
         </p>
       </motion.div>
     </div>
@@ -37,7 +37,7 @@ const LogosShowcase = () => (
 
     <div className="max-w-[1280px] mx-auto px-6 md:px-10 mt-12 grid grid-cols-2 md:grid-cols-4 gap-px bg-border/60 rounded-3xl overflow-hidden border border-border">
       {grid.map((g) => (
-        <div key={g} className="bg-card/40 h-28 flex items-center justify-center font-display text-2xl text-foreground/60 hover:text-foreground hover:bg-card/80 transition-all duration-500">
+        <div key={g} className="bg-card/40 h-28 flex items-center justify-center font-display text-2xl text-foreground/60 hover:text-foreground hover:bg-card/80 transition-all duration-500 text-center px-2">
           {g}
         </div>
       ))}
