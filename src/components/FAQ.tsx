@@ -34,7 +34,7 @@ const Item = ({ q, a, open, onClick }: { q: string; a: string; open: boolean; on
 const FAQ = () => {
   const [open, setOpen] = useState<number | null>(0);
   return (
-    <section className="py-28 md:py-40 relative">
+    <section className="py-20 md:py-24 relative">
       <div className="max-w-[1280px] mx-auto px-6 md:px-10 grid lg:grid-cols-[1fr_1.4fr] gap-16">
         <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.7 }}>
