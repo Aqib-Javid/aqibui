@@ -9,7 +9,7 @@ const columns = [
 const Footer = () => {
   const year = new Date().getFullYear();
   return (
-    <footer className="relative pt-28 pb-10 mt-10 bg-[hsl(222_20%_10%)] text-[hsl(0_0%_98%)] border-t border-border/60 overflow-hidden">
+    <footer className="relative pt-28 pb-10 mt-10 bg-[hsl(222_20%_10%)] text-[hsl(0_0%_98%)] overflow-hidden">
       <div aria-hidden className="absolute inset-x-0 -top-40 h-[400px] opacity-60 blur-[120px]"
         style={{ background: "radial-gradient(ellipse at center, hsl(255 92% 60% / 0.45), transparent 60%)" }} />
 

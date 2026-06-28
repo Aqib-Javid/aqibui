@@ -9,7 +9,7 @@ const steps = [
 
 const Process = () => {
   return (
-    <section id="process" className="py-28 md:py-40 relative">
+    <section id="process" className="py-20 md:py-24 relative">
       <div className="max-w-[1280px] mx-auto px-6 md:px-10">
         <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.7 }}

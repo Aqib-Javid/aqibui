@@ -1,21 +1,33 @@
 import { motion } from "framer-motion";
-import { ArrowUpRight, Mail, MapPin } from "lucide-react";
+import { ArrowUpRight, Mail, MapPin, Copy, Check } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 
-const budgets = ["< $5k", "$5–15k", "$15–30k", "$30k+"];
+const EMAIL = "aqib.uidesign@gmail.com";
 
 const Contact = () => {
-  const [budget, setBudget] = useState("$15–30k");
+  const [copied, setCopied] = useState(false);
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     toast.success("Thanks — I'll reply within a working day.");
     (e.target as HTMLFormElement).reset();
   };
+  const copyEmail = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    try {
+      await navigator.clipboard.writeText(EMAIL);
+      setCopied(true);
+      toast.success("Email copied");
+      setTimeout(() => setCopied(false), 1800);
+    } catch {
+      toast.error("Could not copy");
+    }
+  };
   return (
-    <section id="contact" className="py-28 md:py-40 relative overflow-hidden">
+    <section id="contact" className="py-20 md:py-28 relative overflow-hidden">
       <div className="absolute -bottom-40 left-1/2 -translate-x-1/2 w-[900px] h-[900px] rounded-full opacity-20 blur-[150px] pointer-events-none"
-        style={{ background: "radial-gradient(circle, hsl(255 92% 65% / 0.5), transparent 70%)" }} />
+        style={{ background: "radial-gradient(circle, hsl(220 90% 60% / 0.5), transparent 70%)" }} />
       <div className="relative max-w-[1280px] mx-auto px-6 md:px-10 grid lg:grid-cols-[1fr_1.1fr] gap-16">
         <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.8 }}>
@@ -27,12 +39,22 @@ const Contact = () => {
             Tell me about your product, your team, and where you want to be in 90 days. I'll come back within a working day.
           </p>
           <div className="mt-12 space-y-5">
-            <a href="mailto:hello@aqibjavid.com" className="flex items-center gap-4 group">
-              <span className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-foreground group-hover:border-primary group-hover:text-primary transition-colors">
+            <div className="flex items-center gap-4 group">
+              <a href={`mailto:${EMAIL}`} className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-foreground hover:border-primary hover:text-primary transition-colors">
                 <Mail className="w-4 h-4" />
-              </span>
-              <span className="font-display text-xl text-foreground group-hover:text-gradient-primary transition-all">hello@aqibjavid.com</span>
-            </a>
+              </a>
+              <a href={`mailto:${EMAIL}`} className="font-display text-xl text-foreground hover:text-gradient-primary transition-all">
+                {EMAIL}
+              </a>
+              <button
+                type="button"
+                onClick={copyEmail}
+                aria-label="Copy email"
+                className="w-9 h-9 rounded-full border border-border flex items-center justify-center text-foreground/70 hover:border-primary hover:text-primary transition-colors"
+              >
+                {copied ? <Check className="w-3.5 h-3.5 text-primary" /> : <Copy className="w-3.5 h-3.5" />}
+              </button>
+            </div>
             <div className="flex items-center gap-4">
               <span className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-foreground">
                 <MapPin className="w-4 h-4" />
@@ -51,17 +73,7 @@ const Contact = () => {
             <Field label="Email" name="email" type="email" placeholder="you@company.com" required />
           </div>
           <Field label="Company" name="company" placeholder="Company / team" />
-          <div>
-            <label className="mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">Budget</label>
-            <div className="mt-3 flex flex-wrap gap-2">
-              {budgets.map((b) => (
-                <button type="button" key={b} onClick={() => setBudget(b)}
-                  className={`px-4 py-2 rounded-full border text-sm transition-all ${budget === b ? "bg-primary text-primary-foreground border-primary" : "border-border text-foreground/70 hover:border-primary/40"}`}>
-                  {b}
-                </button>
-              ))}
-            </div>
-          </div>
+          <Field label="Budget" name="budget" placeholder="e.g. $10k, flexible, or to be discussed" />
           <div>
             <label className="mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">Message</label>
             <textarea name="message" rows={5} required
@@ -88,3 +100,4 @@ const Field = ({ label, name, type = "text", placeholder, required }: { label: s
 );
 
 export default Contact;
+
