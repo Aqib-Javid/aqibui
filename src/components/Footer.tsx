@@ -20,17 +20,17 @@ const Footer = () => {
               <span className="w-7 h-7 rounded-full bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center font-display text-background text-sm">A</span>
               <span className="font-display text-xl">Aqib Javid</span>
             </div>
-            <p className="text-white/60 text-sm leading-relaxed max-w-xs">
+            <p className="text-white/70 text-sm leading-relaxed max-w-xs">
               An independent Product Designer crafting digital experiences for ambitious teams worldwide.
             </p>
           </motion.div>
           {columns.map((c) => (
             <div key={c.title}>
-              <p className="mono text-[10px] uppercase tracking-[0.22em] text-white/50 mb-5">{c.title}</p>
+              <p className="mono text-[10px] uppercase tracking-[0.22em] text-white/60 mb-5">{c.title}</p>
               <ul className="space-y-3">
                 {c.links.map((l) => (
                   <li key={l}>
-                    <a href="#" className="text-white/80 hover:text-white link-underline text-sm">{l}</a>
+                    <a href="#" className="text-white/85 hover:text-white link-underline text-sm">{l}</a>
                   </li>
                 ))}
               </ul>
@@ -39,14 +39,14 @@ const Footer = () => {
         </div>
 
         <div className="relative -mb-6 overflow-hidden">
-          <h2 aria-hidden className="editorial-heading text-white/[0.06] text-[22vw] leading-[0.85] whitespace-nowrap text-center select-none">
+          <h2 aria-hidden className="editorial-heading text-white/[0.08] text-[22vw] leading-[0.85] whitespace-nowrap text-center select-none">
             Aqib Javid.
           </h2>
         </div>
 
-        <div className="relative flex flex-col md:flex-row items-center justify-between gap-4 pt-8 border-t border-white/10">
-          <p className="mono text-[10px] uppercase tracking-[0.25em] text-white/50">© {year} Aqib Javid · All rights reserved</p>
-          <p className="mono text-[10px] uppercase tracking-[0.25em] text-white/50">Designed &amp; built with intent</p>
+        <div className="relative flex flex-col md:flex-row items-center justify-between gap-4 pt-8 border-t border-white/15">
+          <p className="mono text-[10px] uppercase tracking-[0.25em] text-white/65">© {year} Aqib Javid · All rights reserved</p>
+          <p className="mono text-[10px] uppercase tracking-[0.25em] text-white/65">Designed &amp; built with intent</p>
         </div>
       </div>
     </footer>

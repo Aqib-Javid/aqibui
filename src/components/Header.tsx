@@ -3,11 +3,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 
 const navItems = [
-  { label: "About", id: "about" },
   { label: "Services", id: "services" },
   { label: "Work", id: "work" },
+  { label: "About", id: "about" },
   { label: "Process", id: "process" },
-  { label: "Insights", id: "insights" },
+  { label: "Testimonials", id: "testimonials" },
+  { label: "Contact", id: "contact" },
 ];
 
 const Header = () => {
