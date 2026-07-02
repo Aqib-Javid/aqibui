@@ -2,9 +2,9 @@ import { motion, useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
 const stats = [
-  { value: 80, suffix: "+", label: "Projects shipped" },
-  { value: 8, suffix: "+", label: "Years experience" },
-  { value: 20, suffix: "+", label: "Happy clients" },
+  { value: 100, suffix: "+", label: "Projects shipped" },
+  { value: 4, suffix: "+", label: "Years experience" },
+  { value: 80, suffix: "+", label: "Happy clients" },
   { value: 12, suffix: "", label: "Countries served" },
 ];
 
