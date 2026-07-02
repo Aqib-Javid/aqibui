@@ -7,7 +7,7 @@ import Testimonials from "@/components/Testimonials";
 import About from "@/components/About";
 import Process from "@/components/Process";
 import LogosShowcase from "@/components/LogosShowcase";
-import FAQ from "@/components/FAQ";
+
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
@@ -23,7 +23,7 @@ const Index = () => (
       <Process />
       <LogosShowcase />
       <Testimonials />
-      <FAQ />
+      
       <Contact />
     </main>
     <Footer />
