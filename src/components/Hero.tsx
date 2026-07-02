@@ -9,17 +9,18 @@ const SmallQuote = ({
   name,
   delay = 0,
   rotate = -3,
-}: { quote: string; name: string; delay?: number; rotate?: number }) => (
+  className = "",
+}: { quote: string; name: string; delay?: number; rotate?: number; className?: string }) => (
   <motion.div
     initial={{ opacity: 0, y: 24, rotate: 0 }}
     whileInView={{ opacity: 1, y: 0, rotate }}
     viewport={{ once: true }}
     transition={{ duration: 0.9, delay, ease: [0.22, 1, 0.36, 1] }}
     whileHover={{ y: -4, rotate: rotate * 0.4 }}
-    className="w-[260px] glass-card rounded-2xl p-5 text-left shadow-[0_20px_50px_-25px_hsl(220_30%_40%/0.18)]"
+    className={`w-[220px] glass-card rounded-2xl p-4 text-left shadow-[0_20px_50px_-25px_hsl(220_30%_40%/0.18)] ${className}`}
   >
-    <Quote className="w-4 h-4 text-primary/70 mb-2" strokeWidth={1.4} />
-    <p className="text-[12px] text-foreground/85 leading-relaxed mb-3">{quote}</p>
+    <Quote className="w-3.5 h-3.5 text-primary/70 mb-2" strokeWidth={1.4} />
+    <p className="text-[11px] text-foreground/85 leading-relaxed mb-2">{quote}</p>
     <p className="mono text-[9px] uppercase tracking-[0.22em] text-muted-foreground">— {name}</p>
   </motion.div>
 );
@@ -102,22 +103,23 @@ const Hero = () => (
           </a>
         </motion.div>
 
-        <div className="mt-14 flex flex-wrap items-center justify-center gap-5 md:gap-8">
-          <SmallQuote
-            quote="Aqib delivered scalable design across our app — onboarding completion lifted almost overnight."
-            name="Chirag Kashyap"
-            delay={1.4}
-            rotate={-3}
-          />
-          <SmallQuote
-            quote="One of the sharpest product minds we've worked with. Easily 10/10."
-            name="Shruthi Shukla, Sanialarm"
-            delay={1.55}
-            rotate={3}
-          />
-        </div>
       </div>
     </div>
+
+    <SmallQuote
+      quote="Aqib delivered scalable design across our app — onboarding completion lifted almost overnight."
+      name="Chirag Kashyap"
+      delay={1.4}
+      rotate={-4}
+      className="hidden lg:block absolute left-6 xl:left-16 bottom-24 xl:bottom-28"
+    />
+    <SmallQuote
+      quote="One of the sharpest product minds we've worked with. Easily 10/10."
+      name="Shruthi Shukla, Sanialarm"
+      delay={1.55}
+      rotate={4}
+      className="hidden lg:block absolute right-6 xl:right-16 bottom-24 xl:bottom-28"
+    />
   </section>
 );
 
