@@ -47,7 +47,7 @@ const Header = () => {
             <span className="font-display text-foreground text-lg tracking-tight">Aqib Javid</span>
           </button>
 
-          <ul className="hidden md:flex items-center gap-9 absolute left-1/2 -translate-x-1/2">
+          <ul className="hidden lg:flex items-center gap-9 absolute left-1/2 -translate-x-1/2">
             {navItems.map((item) => (
               <li key={item.id}>
                 <button onClick={() => scrollToSection(item.id)} className="link-underline text-[13px] tracking-tight text-muted-foreground hover:text-foreground transition-colors duration-300">
@@ -64,14 +64,14 @@ const Header = () => {
             </span>
           </button>
 
-          <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="md:hidden p-2 text-foreground" aria-label="Toggle menu">
+          <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="lg:hidden p-2 text-foreground" aria-label="Toggle menu">
             {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
 
         <AnimatePresence>
           {isMenuOpen && (
-            <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.2 }} className="md:hidden glass-nav rounded-2xl mt-3 px-6 py-5">
+            <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.2 }} className="lg:hidden glass-nav rounded-2xl mt-3 px-6 py-5">
               <ul className="flex flex-col gap-4">
                 {navItems.map((item) => (
                   <li key={item.id}>
