@@ -104,9 +104,8 @@ const WorkShowcase = () => {
 
       <div
         ref={trackRef}
-        className="flex gap-5 md:gap-8 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        className="flex gap-5 md:gap-8 overflow-x-auto snap-x snap-mandatory scroll-smooth pl-6 md:pl-10 xl:pl-[max(2.5rem,calc((100vw-1280px)/2))] scroll-pl-6 md:scroll-pl-10 xl:scroll-pl-[max(2.5rem,calc((100vw-1280px)/2))] pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
-        <div className="shrink-0 w-6 md:w-10 xl:w-[max(2.5rem,calc((100vw-1280px)/2))]" aria-hidden />
         {projects.map((p) => (
           <Card key={p.title} p={p} />
         ))}
