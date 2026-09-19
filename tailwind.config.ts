@@ -12,7 +12,7 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ['Instrument Serif', 'serif'],
+        display: ['Geist Sans', 'sans-serif'],
         body: ['Geist Sans', 'sans-serif'],
         sans: ['Geist Sans', 'sans-serif'],
         mono: ['Geist Mono', 'monospace'],
