@@ -4,33 +4,33 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222 20% 10%;
-    --card: 0 0% 100%;
-    --card-foreground: 222 20% 10%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222 20% 10%;
-    --primary: 220 90% 56%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 220 14% 96%;
-    --secondary-foreground: 222 20% 10%;
-    --muted: 220 14% 96%;
-    --muted-foreground: 220 9% 40%;
-    --accent: 220 90% 56%;
-    --accent-foreground: 0 0% 100%;
+    --background: 0 0% 4%;
+    --foreground: 0 0% 96%;
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 96%;
+    --popover: 0 0% 7%;
+    --popover-foreground: 0 0% 96%;
+    --primary: 255 92% 73%;
+    --primary-foreground: 0 0% 5%;
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 0 0% 96%;
+    --muted: 0 0% 13%;
+    --muted-foreground: 0 0% 62%;
+    --accent: 255 92% 73%;
+    --accent-foreground: 0 0% 5%;
     --destructive: 0 70% 55%;
     --destructive-foreground: 0 0% 100%;
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 220 90% 56%;
-    --radius: 1rem;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 255 92% 73%;
+    --radius: 0.5rem;
 
-    --font-display: 'Instrument Serif', serif;
+    --font-display: 'Geist Sans', sans-serif;
     --font-body: 'Geist Sans', sans-serif;
     --font-mono: 'Geist Mono', monospace;
 
-    --gradient-accent: linear-gradient(135deg, hsl(220 90% 56%) 0%, hsl(200 95% 55%) 100%);
-    --shadow-elegant: 0 30px 80px -30px hsl(220 90% 55% / 0.35);
+    --gradient-accent: linear-gradient(135deg, hsl(255 92% 73%) 0%, hsl(255 92% 63%) 100%);
+    --shadow-elegant: 0 30px 80px -30px hsl(255 92% 73% / 0.35);
   }
 }
 
@@ -40,15 +40,11 @@
   body {
     @apply bg-background text-foreground antialiased;
     font-family: var(--font-body);
-    background-image:
-      radial-gradient(ellipse 80% 50% at 50% -10%, hsl(220 90% 65% / 0.10), transparent 60%),
-      radial-gradient(ellipse 60% 40% at 100% 30%, hsl(200 90% 65% / 0.06), transparent 60%);
-    background-attachment: fixed;
+    overflow-x: hidden;
   }
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
-    letter-spacing: -0.01em;
-    font-weight: 400;
+    letter-spacing: 0;
   }
   ::selection { background: hsl(var(--primary) / 0.25); color: hsl(var(--foreground)); }
   ::-webkit-scrollbar { width: 8px; height: 8px; }
@@ -66,17 +62,16 @@
     background-clip: text;
   }
   .glass-card {
-    background: hsl(0 0% 100% / 0.7);
+    background: hsl(var(--card) / 0.78);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid hsl(220 13% 88%);
-    box-shadow: 0 1px 2px hsl(220 13% 50% / 0.04), 0 12px 40px -20px hsl(220 13% 30% / 0.08);
+    border: 1px solid hsl(var(--border));
   }
   .glass-nav {
-    background: hsl(0 0% 100% / 0.75);
+    background: hsl(var(--background) / 0.72);
     backdrop-filter: blur(24px) saturate(180%);
     -webkit-backdrop-filter: blur(24px) saturate(180%);
-    border: 1px solid hsl(220 13% 91%);
+    border: 1px solid hsl(var(--border));
   }
 
   .editorial-heading {
@@ -84,6 +79,10 @@
     font-weight: 400;
     letter-spacing: -0.02em;
     line-height: 0.95;
+  }
+  .text-outline {
+    color: transparent;
+    -webkit-text-stroke: 1px hsl(var(--foreground) / 0.72);
   }
   .mono { font-family: var(--font-mono); letter-spacing: 0; }
   .marquee-mask { mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent); }
