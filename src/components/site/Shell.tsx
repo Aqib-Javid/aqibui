@@ -62,8 +62,11 @@ const Shell = ({ children }: { children: ReactNode }) => (
       </nav>
     </header>
     <main className="mx-auto max-w-[640px] px-6 pb-16 pt-20">{children}</main>
-    <footer className="mx-auto flex max-w-[640px] justify-between border-t border-border px-6 py-8 text-sm text-muted-foreground">
-      <span>Aqib Javid © {new Date().getFullYear()}</span>
+    <footer className="mx-auto flex max-w-[640px] items-center justify-between gap-4 border-t border-border px-6 py-8 text-sm text-muted-foreground">
+      <span className="flex items-center gap-3">
+        <img src={avatar} alt="" className="h-8 w-8 rounded-full object-cover" />
+        <span>Aqib Javid © {new Date().getFullYear()} · Copyright</span>
+      </span>
       <span>Working worldwide</span>
     </footer>
   </div>
