@@ -16,7 +16,6 @@ const ProjectPanel = ({ p, i }: { p: Project; i: number }) => (
     <Link to={`/work/${p.slug}`} className="relative flex min-h-[260px] items-center justify-center bg-secondary p-8 sm:p-14" aria-label={`${p.name} case study`}>
       <motion.div
         className="w-full max-w-md transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04] group-hover:-rotate-1"
-        animate={undefined}
       >
         <Artwork project={p} size="lg" />
       </motion.div>

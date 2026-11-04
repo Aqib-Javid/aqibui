@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import Shell, { EMAIL, fade, Label, ProjectRow, Artwork } from "@/components/site/Shell";
+import Shell, { EMAIL, fade, ProjectRow, Artwork } from "@/components/site/Shell";
 import { projects } from "@/data/projects";
 import avatar from "@/assets/aqib-avatar.png";
 
