@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Link, NavLink } from "react-router-dom";
 import { ReactNode } from "react";
 import { Project } from "@/data/projects";
+import avatar from "@/assets/aqib-avatar.png";
 
 export const EMAIL = "aqib.uidesign@gmail.com";
 
