@@ -1,0 +1,1 @@
+Keep app-wide interaction feedback mounted above route elements so pointer effects continue through navigation; this prevents route changes from interrupting click animations.
