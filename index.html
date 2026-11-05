@@ -1,11 +1,17 @@
 <!doctype html>
-<html lang="en" class="dark">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Aqib Javid | Product Designer</title>
     <meta name="description" content="Product designer focused on user experience and design systems. Creating beautiful, accessible digital products." />
     <meta name="author" content="Aqib Javid" />
+    <script>
+      // Apply the saved theme before first paint to avoid a flash.
+      try {
+        if (localStorage.getItem("aj-theme") === "dark") document.documentElement.classList.add("dark");
+      } catch (e) {}
+    </script>
     <link rel="icon" type="image/jpeg" href="/images/profile-photo.jpg" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
