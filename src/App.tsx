@@ -36,7 +36,7 @@ const ClickRippleFeedback = () => {
           key={ripple.id}
           aria-hidden="true"
           className="pointer-events-none fixed left-0 top-0 z-[100] h-9 w-9 rounded-full border border-primary/70 bg-primary/10"
-          initial={{ opacity: 0, scale: 0.35 }}
+          initial={{ opacity: 0, scale: 0.35, x: ripple.x - 18, y: ripple.y - 18 }}
           animate={{
             x: ripple.x - 18,
             y: ripple.y - 18,
