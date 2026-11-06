@@ -19,7 +19,6 @@ const ClickRippleFeedback = () => {
     let nextId = 0;
     const handlePointerDown = (event: PointerEvent) => {
       if (event.button !== 0 || !(event.target instanceof Element)) return;
-      if (!event.target.closest("a, button, [role='button']")) return;
 
       const ripple = { id: ++nextId, x: event.clientX, y: event.clientY };
       setRipples((current) => [...current, ripple]);
@@ -35,13 +34,13 @@ const ClickRippleFeedback = () => {
         <motion.span
           key={ripple.id}
           aria-hidden="true"
-          className="pointer-events-none fixed left-0 top-0 z-[100] h-9 w-9 rounded-full border border-primary/70 bg-primary/10"
-          initial={{ opacity: 0, scale: 0.35 }}
+          className="pointer-events-none fixed left-0 top-0 z-[100] h-12 w-12 rounded-full border border-primary/70 bg-primary/10"
+          initial={{ opacity: 0, scale: 0.35, x: ripple.x - 24, y: ripple.y - 24 }}
           animate={{
             x: ripple.x - 18,
             y: ripple.y - 18,
             opacity: [0, 0.65, 0],
-            scale: [0.35, 1.15, 1.9],
+            scale: [0.35, 1.15, 2.2],
           }}
           transition={{ duration: 0.58, ease: [0.22, 1, 0.36, 1] }}
           onAnimationComplete={() => setRipples((current) => current.filter((item) => item.id !== ripple.id))}

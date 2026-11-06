@@ -98,11 +98,10 @@ const Shell = ({ children }: { children: ReactNode }) => {
   const [soundOn, setSoundOn] = useState(isSoundOn);
   const [dark, setDark] = useState(() => document.documentElement.classList.contains("dark"));
 
-  // Soft tick whenever any link or button is tapped.
+  // Soft tick on every primary pointer click; the header control can mute it.
   useEffect(() => {
     const handler = (e: PointerEvent) => {
-      const target = e.target as HTMLElement | null;
-      if (target?.closest('a, button, [role="button"]') && isSoundOn()) playClick();
+      if (e.button === 0 && isSoundOn()) playClick();
     };
     document.addEventListener("pointerdown", handler);
     return () => document.removeEventListener("pointerdown", handler);
